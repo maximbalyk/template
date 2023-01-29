@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.947d3e94.css",
-    "main.js": "/static/js/main.37a2a7ae.js",
-    "static/js/787.3b532471.chunk.js": "/static/js/787.3b532471.chunk.js",
-    "static/media/Roboto-Regular-webfont.woff": "/static/media/Roboto-Regular-webfont.ccc2dd0b454fbaab2a3c.woff",
-    "static/media/footerTwiter.svg": "/static/media/footerTwiter.09ef26f769d6a6298c96.svg",
-    "static/media/twitterHover.svg": "/static/media/twitterHover.4b0c272c9684e948f3cf.svg",
-    "static/media/instaHover.svg": "/static/media/instaHover.1ecf7c96066603f791d9.svg",
-    "index.html": "/index.html",
-    "static/media/footerInstagram.svg": "/static/media/footerInstagram.796dfda4a2b764ac784f.svg",
-    "static/media/testimonialsQuote.svg": "/static/media/testimonialsQuote.5c94372bb408bfeebb40.svg",
-    "static/media/facebookhover.svg": "/static/media/facebookhover.9fd0b68a6e510b938507.svg",
-    "static/media/footerFacebook.svg": "/static/media/footerFacebook.36579f844eb1deec4d90.svg",
-    "main.947d3e94.css.map": "/static/css/main.947d3e94.css.map",
-    "main.37a2a7ae.js.map": "/static/js/main.37a2a7ae.js.map",
-    "787.3b532471.chunk.js.map": "/static/js/787.3b532471.chunk.js.map"
+    "main.css": "/template/static/css/main.fbeddc67.css",
+    "main.js": "/template/static/js/main.331c632e.js",
+    "static/js/787.3b532471.chunk.js": "/template/static/js/787.3b532471.chunk.js",
+    "static/media/Roboto-Regular-webfont.woff": "/template/static/media/Roboto-Regular-webfont.ccc2dd0b454fbaab2a3c.woff",
+    "static/media/footerTwiter.svg": "/template/static/media/footerTwiter.09ef26f769d6a6298c96.svg",
+    "static/media/twitterHover.svg": "/template/static/media/twitterHover.4b0c272c9684e948f3cf.svg",
+    "static/media/instaHover.svg": "/template/static/media/instaHover.1ecf7c96066603f791d9.svg",
+    "index.html": "/template/index.html",
+    "static/media/footerInstagram.svg": "/template/static/media/footerInstagram.796dfda4a2b764ac784f.svg",
+    "static/media/testimonialsQuote.svg": "/template/static/media/testimonialsQuote.5c94372bb408bfeebb40.svg",
+    "static/media/facebookhover.svg": "/template/static/media/facebookhover.9fd0b68a6e510b938507.svg",
+    "static/media/footerFacebook.svg": "/template/static/media/footerFacebook.36579f844eb1deec4d90.svg",
+    "main.fbeddc67.css.map": "/template/static/css/main.fbeddc67.css.map",
+    "main.331c632e.js.map": "/template/static/js/main.331c632e.js.map",
+    "787.3b532471.chunk.js.map": "/template/static/js/787.3b532471.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.947d3e94.css",
-    "static/js/main.37a2a7ae.js"
+    "static/css/main.fbeddc67.css",
+    "static/js/main.331c632e.js"
   ]
 }
