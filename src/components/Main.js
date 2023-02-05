@@ -34,7 +34,7 @@ export default function Main() {
         <div className="benefit">
           <img
             src={benefitSpeakerSystem}
-            alt="Benefir befefitDesign"
+            alt="Benefit befefitDesign"
             className="benefit__logo"
           />
           <h2 className="benefit__title">Tweeter Speaker System</h2>
