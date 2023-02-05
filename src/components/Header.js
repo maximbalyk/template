@@ -1,4 +1,8 @@
 import React from 'react'
+import logo from '../images/logo.svg'
+import menu from '../images/menu.svg'
+import wirelessSpeaker_original from '../images/wirelessSpeaker_original.svg'
+import cross from '../images/cross.svg'
 
 export default function Header() {
   return (
@@ -6,13 +10,14 @@ export default function Header() {
       <div className="header__top">
         <div className="header__logo">
           <img
-            src="/images/logo.svg"
-            alt="logo"
+              src={logo}
+              alt="logo"
           />
         </div>
+
         <div className="header__menu-icon">
           <a href="#menu">
-            <img src="/images/menu.svg" alt="menu-icon"/>
+            <img src={menu} alt="menu-icon"/>
           </a>
         </div>
 
@@ -27,7 +32,7 @@ export default function Header() {
       <div className="grid ">
         <div className="grid__item--blink">
           <img
-            src="/images/wirelessSpeaker_original.svg"
+            src={wirelessSpeaker_original}
             alt="wirelessSpeakers"
             className="header__content-image"
           />
@@ -45,7 +50,7 @@ export default function Header() {
 
         <div className="grid__item grid__item--4-8 grid__item--desktop-5-12">
           <img
-            src="/images/wirelessSpeaker_original.svg"
+            src={wirelessSpeaker_original}
             alt="wirelessSpeakers"
             className="header__content-image"
           />
@@ -59,8 +64,8 @@ export default function Header() {
 
           <ul className="menu__list">
             <li className="menu__item">
-              <a href="#" class="menu__logo">
-                <img src="/images/cross.svg" alt=""/>
+              <a href="#" className="menu__logo">
+                <img src={cross} alt=""/>
               </a>
             </li>
 

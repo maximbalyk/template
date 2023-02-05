@@ -1,4 +1,6 @@
 import React from 'react'
+import logo from '../images/logo.svg'
+import toTop from '../images/to-top.svg'
 
 export default function Footer() {
   return (
@@ -7,7 +9,7 @@ export default function Footer() {
 
         <a href="#" className="logo">
           <img
-            src="/images/logo.svg"
+            src={logo}
             className="logo__img"
             alt="Crazy Baby"
           />
@@ -15,7 +17,7 @@ export default function Footer() {
 
         <a href="#" className="footer__to-top">
           <img
-            src="/images/to-top.svg"
+            src={toTop}
             alt="Back to top"
           />
         </a>

@@ -1,4 +1,15 @@
 import React from 'react'
+import befefitDesign from '../images/befefitDesign.png'
+import benefitSpeakerSystem from '../images/benefitSpeakerSystem.png'
+import benefitMultiroom from '../images/benefitMultiroom.png'
+import benefitLighting from '../images/benefitLighting.png'
+import aboutUsVideo from '../images/about-usVideo.png'
+import martin from '../images/martin.png'
+import technologyImageDesktop from '../images/technologyImageDesktop.png'
+import slideLeft from '../images/slide-left.svg'
+import slideRight from '../images/slide-right.svg'
+import features from '../images/features.png'
+import intro from '../video/intro.mp4'
 
 export default function Main() {
   return (
@@ -7,7 +18,7 @@ export default function Main() {
       <section className="benefits">
         <div className="benefit">
           <img
-            src="/images/befefitDesign.png"
+            src={befefitDesign}
             alt="Benefir befefitDesign"
             className="benefit__logo"
           />
@@ -22,7 +33,7 @@ export default function Main() {
         </div>
         <div className="benefit">
           <img
-            src="/images/benefitSpeakerSystem.png"
+            src={benefitSpeakerSystem}
             alt="Benefir befefitDesign"
             className="benefit__logo"
           />
@@ -36,7 +47,7 @@ export default function Main() {
         </div>
         <div className="benefit">
           <img
-            src="/images/benefitMultiroom.png"
+            src={benefitMultiroom}
             alt="Benefir befefitDesign"
             className="benefit__logo"
           />
@@ -50,7 +61,7 @@ export default function Main() {
         </div>
         <div className="benefit">
           <img
-            src="/images/benefitLighting.png"
+            src={benefitLighting}
             alt="Benefir befefitDesign"
             className="benefit__logo"
           />
@@ -66,8 +77,8 @@ export default function Main() {
       <section className="presentation" id="presentation">
         <video
           className="video video__full-width"
-          src="/video/intro.mp4"
-          poster="./images/about-usVideo.png"
+          src={intro}
+          poster={aboutUsVideo}
           controls
         >
         </video>
@@ -77,7 +88,7 @@ export default function Main() {
         <h2 className="about-us__title">DESIGNED FOR THE FUTURE</h2>
 
         <img
-          src="/images/about-usImage.png"
+          src={aboutUsVideo}
           alt="about"
           className="about-us__image"
         />
@@ -93,7 +104,7 @@ export default function Main() {
       <section className="technology" id="technology">
         <h2 className="technology__title">technology</h2>
         <img
-          src="/images/technologyImageDesktop.png"
+          src={technologyImageDesktop}
           alt="technology of speaker"
           className="technology__image"
         />
@@ -108,7 +119,7 @@ export default function Main() {
         </div>
         <img
           className="testimonials__avatar"
-          src="/images/martin.png"
+          src={martin}
           alt="Garrett Martin"
         />
         <p className="testimonials__name">
@@ -162,10 +173,10 @@ export default function Main() {
           <div className="features__slide">
             <img
               className="features__slide-left"
-              src="/images/slide-left.svg"
+              src={slideLeft}
               alt="go-left"
             />
-            <img src="/images/slide-right.svg" alt="go right"/>
+            <img src={slideRight} alt="go right"/>
             {/* <!-- <span className="features__slide-right"></span> --> */}
           </div>
           <div className="features__slide features__slide--text">
@@ -173,7 +184,7 @@ export default function Main() {
             <span className="features__slide--text-second">/ 03</span>
           </div>
           <img
-            src="/images/features.png"
+            src={features}
             alt="features speakers"
             className="features__image"
           />
@@ -202,7 +213,7 @@ export default function Main() {
               name="message"
               placeholder="Your message..."
               className="questions__field questions__textarea"
-          ></textarea>
+            />
             <button className="questions__button">
               SEND
             </button>
