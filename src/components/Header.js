@@ -17,16 +17,16 @@ class Header extends React.Component {
             </div>
 
             <div className="header__menu-icon">
-              <a href="src/components#menu">
+              <a href="/#menu">
                 <img src={menu} alt="menu-icon"/>
               </a>
             </div>
 
             <div className="header__buttons">
-              <a href="src/components#specs" className="header__button">SPECS</a>
-              <a href="src/components#en" className="header__button header__button--active">EN </a>
-              <a href="src/components#ua" className="header__button">/ UA</a>
-              <a href="src/components#questions" className="header__button--buy">Buy</a>
+              <a href="/#specs" className="header__button">SPECS</a>
+              <a href="/#en" className="header__button header__button--active">EN </a>
+              <a href="/#ua" className="header__button">/ UA</a>
+              <a href="/#questions" className="header__button--buy">Buy</a>
             </div>
           </div>
 
@@ -65,7 +65,7 @@ class Header extends React.Component {
 
               <ul className="menu__list">
                 <li className="menu__item">
-                  <a href="src/components#" className="menu__logo">
+                  <a href="/#" className="menu__logo">
                     <img src={cross} alt="cross"/>
                   </a>
                 </li>
