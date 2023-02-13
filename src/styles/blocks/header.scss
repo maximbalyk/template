@@ -53,7 +53,14 @@
     color: #fff;
 
     text-decoration: none;
+    transition: 500ms;
+
+    &:hover {
+      background-color: #131313;
+      transition: 500ms;
+    }
   }
+
 
   &__menu-icon {
     @include onTablet {

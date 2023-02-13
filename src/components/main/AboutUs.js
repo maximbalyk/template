@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import aboutUsVideo from "../../images/about-usVideo.png";
+import aboutUsImages from "../../images/about-usImage.png";
 
 class AboutUs extends Component {
     render() {
@@ -8,7 +8,7 @@ class AboutUs extends Component {
                 <h2 className="about-us__title">DESIGNED FOR THE FUTURE</h2>
 
                 <img
-                    src={aboutUsVideo}
+                    src={aboutUsImages}
                     alt="about"
                     className="about-us__image"
                 />
