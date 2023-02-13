@@ -9,6 +9,15 @@
   @include onTablet {
     position: relative;
   }
+  &__container {
+    position: relative;
+    @include onTablet {
+      position: relative;
+      top: -218px;
+      right: 48px;
+    }
+
+  }
 
   &__video {
     padding-bottom: 90px;
@@ -104,7 +113,7 @@
     }
 
     @include onDesktop {
-      left: 840px;
+      left: 890px;
       transform: translateY(130px);
     }
 

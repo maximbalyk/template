@@ -1,6 +1,6 @@
 import './App.css';
 import './styles/main.scss';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import Navigation from './components/Navigation';
 import Main from './components/Main';
 import Footer from './components/Footer';
