@@ -1,0 +1,42 @@
+.item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+.item-1{
+  background-color: blue;
+}
+.item-2{
+  background-color: red;
+}
+.item-3{
+  background-color: green;
+}
+
+.main-container{
+  margin-bottom: 50px;
+  height: 340px;
+  width: 382px;
+  display: none;
+
+  @include onMobile {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+.window{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+}
+.all-pages-container{
+  height: 90%;
+  display: flex;
+
+  transition: 300ms ease-in-out;
+}

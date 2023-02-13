@@ -35,6 +35,11 @@
 
     color: $fontDarkBrown;
     padding-bottom: 50px;
+
+    @include onMobile {
+      text-align: center;
+    }
+
   }
 
   &__title-small {
@@ -64,9 +69,16 @@
     justify-content: center;
     align-items: baseline;
 
-    &--text {
-      padding-top: 15px;
+    :hover{
+      transform: scale(1.1);
+      transition: 1s;
+    }
 
+    &--text {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      padding-top: 15px;
     }
 
     &--text-first {
@@ -84,7 +96,7 @@
     }
 
     @include onTablet {
-      display: none;
+      display: flex;
     }
   }
 
@@ -143,4 +155,7 @@
 
   }
 
+  &__slideArrow {
+    cursor: pointer;
+  }
 }

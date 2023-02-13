@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import benefitDesign from "../../images/benefitDesign.png";
-import benefitSpeakerSystem from "../../images/benefitSpeakerSystem.png";
-import benefitMultiroom from "../../images/benefitMultiroom.png";
-import benefitLighting from "../../images/benefitLighting.png";
+import benefitDesign from "../../../images/benefitDesign.png";
+import benefitSpeakerSystem from "../../../images/benefitSpeakerSystem.png";
+import benefitMultiroom from "../../../images/benefitMultiroom.png";
+import benefitLighting from "../../../images/benefitLighting.png";
 import Benefit from "./Benefit";
 
 class Benefits extends Component {

@@ -59,7 +59,6 @@ class Header extends React.Component {
 
           </div>
 
-
           <nav  className="page__menu menu" id="menu">
             <div className="menu__content">
 
@@ -71,19 +70,19 @@ class Header extends React.Component {
                 </li>
 
                 <li className="menu__item">
-                  <a href="src/components#presentation" className="menu__link">OUR STORY</a>
+                  <a href="/#presentation" className="menu__link">OUR STORY</a>
                 </li>
                 <li className="menu__item">
-                  <a href="src/components#aboutUS" className="menu__link">ABOUT US</a>
+                  <a href="/#aboutUS" className="menu__link">ABOUT US</a>
                 </li>
                 <li className="menu__item">
-                  <a href="src/components#technology" className="menu__link">TECHNOLOGY</a>
+                  <a href="/#technology" className="menu__link">TECHNOLOGY</a>
                 </li>
                 <li className="menu__item">
-                  <a href="src/components#features" className="menu__link">FEATURES</a>
+                  <a href="/#features" className="menu__link">FEATURES</a>
                 </li>
                 <li className="menu__item">
-                  <a href="src/components#questions" className="menu__link">GET IN TOUCH</a>
+                  <a href="/#questions" className="menu__link">GET IN TOUCH</a>
                 </li>
               </ul>
             </div>
