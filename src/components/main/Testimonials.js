@@ -7,8 +7,9 @@ class Testimonials extends Component {
             <section className="testimonials">
                 <div className="testimonials__quote">
                     <p className="testimonials__text">
-                        “It really took me by surprise honestly to have such full beautiful sound that coming out of this
-                        small compact device. And with the brush aluminum surface, it feels so familiar. Like my iPhone.”
+                        “It really took me by surprise honestly to have such full
+                        beautiful sound that coming out of this small compact device.
+                        And with the brush aluminum surface, it feels so familiar. Like my iPhone.”
                     </p>
                 </div>
                 <img

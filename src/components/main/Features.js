@@ -53,8 +53,8 @@ class Features extends Component {
                             alt="go-left"
                         />
                         <img src={slideRight} alt="go right"/>
-                        {/* <!-- <span className="features__slide-right"></span> --> */}
                     </div>
+
                     <div className="features__slide features__slide--text">
                         <span className="features__slide--text-first">01</span>
                         <span className="features__slide--text-second">/ 03</span>

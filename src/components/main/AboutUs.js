@@ -19,7 +19,7 @@ class AboutUs extends Component {
                     to think they can challenge the industry with disruptive audio products.
                 </p>
                 <div className="about-us__container">
-                    <a href="#" className="about-us__link">See more about us</a>
+                    <a href="/#" className="about-us__link">See more about us</a>
                 </div>
 
             </section>

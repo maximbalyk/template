@@ -1,11 +1,11 @@
 import React from 'react'
-import Benefits from "./header/Benefits";
-import Presentation from "./header/Presentation";
-import AboutUs from "./header/AboutUs";
-import Technology from "./header/Technology";
-import Testimonials from "./header/Testimonials";
-import Features from "./header/Features";
-import Questions from "./header/Questions";
+import Benefits from "./Benefits";
+import Presentation from "./Presentation";
+import AboutUs from "./AboutUs";
+import Technology from "./Technology";
+import Testimonials from "./Testimonials";
+import Features from "./Features";
+import Questions from "./Questions";
 export default class Main extends React.Component {
   render() {
     return (

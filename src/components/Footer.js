@@ -8,7 +8,7 @@ export default class Footer extends React.Component {
         <footer className="footer">
           <div className="footer__logo">
 
-            <a href="#" className="logo">
+            <a href="/#" className="logo">
               <img
                   src={logo}
                   className="logo__img"
@@ -16,7 +16,7 @@ export default class Footer extends React.Component {
               />
             </a>
 
-            <a href="#" className="footer__to-top">
+            <a href="/#" className="footer__to-top">
               <img
                   src={toTop}
                   alt="Back to top"

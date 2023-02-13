@@ -1,8 +1,8 @@
 import React from 'react'
-import logo from '../../images/logo.svg'
-import menu from '../../images/menu.svg'
-import wirelessSpeaker_original from '../../images/wirelessSpeaker_original.svg'
-import cross from '../../images/cross.svg'
+import logo from '../images/logo.svg'
+import menu from '../images/menu.svg'
+import wirelessSpeaker_original from '../images/wirelessSpeaker_original.svg'
+import cross from '../images/cross.svg'
 
 class Header extends React.Component {
   render() {
@@ -66,15 +66,25 @@ class Header extends React.Component {
               <ul className="menu__list">
                 <li className="menu__item">
                   <a href="src/components#" className="menu__logo">
-                    <img src={cross} alt=""/>
+                    <img src={cross} alt="cross"/>
                   </a>
                 </li>
 
-                <li className="menu__item"><a href="src/components#presentation" className="menu__link">OUR STORY</a></li>
-                <li className="menu__item"><a href="src/components#aboutUS" className="menu__link">ABOUT US</a></li>
-                <li className="menu__item"><a href="src/components#technology" className="menu__link">TECHNOLOGY</a></li>
-                <li className="menu__item"><a href="src/components#features" className="menu__link">FEATURES</a></li>
-                <li className="menu__item"><a href="src/components#questions" className="menu__link">GET IN TOUCH</a></li>
+                <li className="menu__item">
+                  <a href="src/components#presentation" className="menu__link">OUR STORY</a>
+                </li>
+                <li className="menu__item">
+                  <a href="src/components#aboutUS" className="menu__link">ABOUT US</a>
+                </li>
+                <li className="menu__item">
+                  <a href="src/components#technology" className="menu__link">TECHNOLOGY</a>
+                </li>
+                <li className="menu__item">
+                  <a href="src/components#features" className="menu__link">FEATURES</a>
+                </li>
+                <li className="menu__item">
+                  <a href="src/components#questions" className="menu__link">GET IN TOUCH</a>
+                </li>
               </ul>
             </div>
           </nav>
