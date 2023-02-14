@@ -2,15 +2,18 @@
   &__full-width {
     width: 100%;
   }
-
   padding-bottom: 90px;
 
   &__button {
     position: absolute;
-    width: 232px;
-    height: 232px;
-    top: 15%;
-    right: 35%;
+    top: 6vw;
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-width: 232px;
+    max-height: 232px;
+    width: 30vw;
+    height: 30vw;
+
     border: 1px solid #F3F4F5;
     border-radius: 50%;
     background-color: unset;
@@ -20,6 +23,7 @@
     font-size: 24px;
     line-height: 18px;
     cursor: pointer;
+    transition: 1s;
 
     &--invisible {
       opacity: 0;
@@ -28,8 +32,19 @@
       opacity: 100%;
     }
 
-  }
+    @include onTablet {
+      top: 7vw;
+      transform: scale(1.2) translate(-50%, 0);
+      transition: 1s;
+    }
 
+    @include onDesktop {
+      top: 15vw;
+      transform: scale(1.5) translate(-50%, 0);
+      transition: 1s;
+    }
+
+  }
 
   @include onTablet {
     padding-bottom: 130px;

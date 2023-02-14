@@ -26,6 +26,7 @@ const Presentation = () => {
                 className="video video__full-width"
                 ref={videoRef}
                 poster={aboutUsVideo}
+                onClick={handlePlay}
             >
                 <source src={intro}/>
             </video>
@@ -35,13 +36,9 @@ const Presentation = () => {
                 onMouseEnter={()=>{setHover((hover)=> !hover)}}
                 onMouseLeave={()=>{setHover((hover)=> !hover)}}
             >
-                {hover ? (
-                    <p>PLAY</p>
-                ):(
-                    <img
-                        src={playIco}
-                        alt="play"
-                    />)}
+                {hover ? (<p>PLAY</p>)
+                    :
+                    (<img src={playIco} alt="play"/>)}
             </button>
 
         </section>
