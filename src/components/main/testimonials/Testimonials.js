@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import martin from "../../images/martin.png";
+import martin from "../../../images/martin.png";
 
 class Testimonials extends Component {
     render() {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import aboutUsImages from "../../images/about-usImage.png";
+import aboutUsImages from "../../../images/about-usImage.png";
 import {Link} from "react-scroll";
 
 class AboutUs extends Component {

@@ -9,7 +9,7 @@ class Questions extends Component {
                         DO YOU HAVE ANY QUESTIONS?
                     </h2>
                     <form
-                        action=""
+                        action="src/components/main"
                         className="grid__item--5-8 grid__item--desktop-8-10"
                     >
                         <input

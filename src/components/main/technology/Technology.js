@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import technologyImageDesktop from "../../images/technologyImageDesktop.png";
+import technologyImageDesktop from "../../../images/technologyImageDesktop.png";
 
 class Technology extends Component {
     render() {
