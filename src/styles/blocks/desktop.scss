@@ -1,26 +1,29 @@
 .desktop {
-  display: none;
+    display: none;
 
-  @include onDesktop {
-    &__menu {
-      display: flex;
-      justify-content: center;
-      list-style: none;
+    &__menu-item {
+        cursor: pointer;
     }
 
-    &__menu-link {
-      color: $fontGrey;
-      font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-      margin: 30px 15px;
-      text-decoration: none;
+    @include onDesktop {
+        &__menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
 
-      border-bottom: 2px solid #cecece;
-      transition: border-color 0.5s;
+        &__menu-link {
+            color: $fontGrey;
+            font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+            margin: 30px 15px;
+            text-decoration: none;
 
-      &:hover {
-        border-color: $fontDarkBrown;
-      }
+            border-bottom: 2px solid #cecece;
+            transition: border-color 0.5s;
+
+            &:hover {
+                border-color: $fontDarkBrown;
+            }
+        }
     }
-  }
-
 }

@@ -1,17 +1,17 @@
-import './App.css';
-import './styles/main.scss';
-import Header from './components/Header';
-import Navigation from './components/Navigation';
-import Main from './components/main/Main';
-import Footer from './components/Footer';
+import "./App.css";
+import "./styles/main.scss";
+import Header from "./components/header/Header";
+import Navigation from "./components/navigation/Navigation";
+import Main from "./components/main/Main";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
     <>
-      <Header/>
-      <Navigation/>
-      <Main/>
-      <Footer/>
+      <Header />
+      <Navigation />
+      <Main />
+      <Footer />
     </>
   );
 }

@@ -19,23 +19,20 @@
 @import "./blocks/carousel.scss";
 @import "./blocks/presentation.scss";
 
-
 h1,
 h2,
 h3,
 ul,
 li,
 p {
-  margin: 0;
+    margin: 0;
 }
-// * {
-//   box-sizing: border-box;
-// }
+
 body {
-  background: $c-gray;
-  margin: 0;
+    background: $c-gray;
+    margin: 0;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }

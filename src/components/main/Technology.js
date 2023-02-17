@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import technologyImageDesktop from "../../images/technologyImageDesktop.png";
 
 class Technology extends Component {
@@ -11,7 +11,6 @@ class Technology extends Component {
                     alt="technology of speaker"
                     className="technology__image"
                 />
-
             </section>
         );
     }

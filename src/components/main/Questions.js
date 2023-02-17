@@ -1,12 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
 class Questions extends Component {
     render() {
         return (
             <section className="questions" id="questions">
                 <div className="grid">
-                    <h2 className="questions__title grid__item--1-4 grid__item--desktop-2-6"
-                    >
+                    <h2 className="questions__title grid__item--1-4 grid__item--desktop-2-6">
                         DO YOU HAVE ANY QUESTIONS?
                     </h2>
                     <form
@@ -26,9 +25,7 @@ class Questions extends Component {
                             placeholder="Your message..."
                             className="questions__field questions__textarea"
                         />
-                        <button className="questions__button">
-                            SEND
-                        </button>
+                        <button className="questions__button">SEND</button>
                     </form>
                 </div>
             </section>
