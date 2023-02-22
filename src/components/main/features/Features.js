@@ -7,7 +7,7 @@ class Features extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isTablet: false, //This is where I am having problems
+            isTablet: false,
         };
 
         this.updatePredicate = this.updatePredicate.bind(this);

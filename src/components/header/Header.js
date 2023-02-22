@@ -8,26 +8,23 @@ class Header extends React.Component {
         activeMenu: false,
         pixel: "100%",
     };
-    openMenu = () => {
-        this.setState({
-            activeMenu: !this.state.activeMenu,
-            pixel: "0",
-        });
-    };
-    closeMenu = () => {
-        this.setState({
-            activeMenu: !this.state.activeMenu,
-            pixel: "100%",
-        });
+    toggleMenu = () => {
+        this.setState(({activeMenu}) => ({
+            activeMenu: !activeMenu,
+            pixel: activeMenu ? "100%" : "0%"
+        }));
     };
     render() {
         return (
             <header className="header">
-                <HeaderTopLine/>
+                <HeaderTopLine
+                    pixel={this.state.pixel}
+                    openMenu={this.toggleMenu}
+                />
                 <HeaderMainContent/>
                 <HeaderNavigationMenu
                     pixel={this.state.pixel}
-                    closedMenu={this.closeMenu}
+                    closedMenu={this.toggleMenu}
                 />
             </header>
         );

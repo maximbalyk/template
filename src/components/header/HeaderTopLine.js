@@ -14,7 +14,7 @@ class HeaderTopLine extends Component {
                 <div className="header__menu-icon">
                     <button
                         className="header__menu-btn"
-                        onClick={this.openMenu}
+                        onClick={this.props.openMenu}
                     >
                         <img src={menu} alt="menu-icon" />
                     </button>
