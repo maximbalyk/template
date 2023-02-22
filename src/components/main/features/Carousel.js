@@ -1,72 +1,59 @@
-import React, { useEffect, useState, Children, cloneElement } from "react";
+import React, { useState } from "react";
 import slideLeft from "../../../images/slide-left.svg";
 import slideRight from "../../../images/slide-right.svg";
+import { useSwipeable } from "react-swipeable";
 
-const PAGE_WIDTH = 400;
-export const Carousel = ({ children }) => {
-    const [pages, setPages] = useState([]);
-    const [offset, setOffset] = useState(0);
+const Carousel = ({ items, renderItem }) => {
+    const [activeIndex, setActiveIndex] = useState(0);
     const [countPages, setCountPages] = useState(1);
 
-    const handleLeftArrowClick = () => {
-        setOffset((currentOffset) => {
-            const newOffset = currentOffset + PAGE_WIDTH;
-            return currentOffset < 0 ? newOffset : currentOffset;
-        });
-        setCountPages((countPages) => {
-            return countPages > 1 ? --countPages : countPages;
-        });
-    };
-    const handleRightArrowClick = () => {
-        setOffset((currentOffset) => {
-            const newOffset = currentOffset - PAGE_WIDTH;
-            return currentOffset > -(PAGE_WIDTH * (pages.length - 1))
-                ? newOffset
-                : currentOffset;
-        });
-        setCountPages((countPages) => {
-            return countPages < 3 ? ++countPages : countPages;
-        });
+    const updateIndex = (newIndex) => {
+        if (newIndex < 0) {
+            newIndex = 0;
+        } else if (newIndex >= items.length) {
+            newIndex = items.length - 1;
+        }
+
+        setActiveIndex(newIndex);
+        setCountPages(newIndex + 1);
     };
 
-    useEffect(() => {
-        setPages(
-            Children.map(children, (child) => {
-                return cloneElement(child, {
-                    style: {
-                        maxWidth: `${PAGE_WIDTH}px`,
-                        minWidth: `${PAGE_WIDTH}px`,
-                        height: "100%",
-                    },
-                });
-            })
-        );
-    }, [children]);
+    const handlers = useSwipeable({
+        onSwipedLeft: () => updateIndex(activeIndex + 1),
+        onSwipedRight: () => updateIndex(activeIndex - 1),
+    });
 
     return (
-        <div className="main-container">
-            <div className="window">
+        <>
+            <div {...handlers} className="features__carousel">
                 <div
-                    className="all-pages-container"
-                    style={{
-                        transform: `translateX(${offset}px)`,
-                    }}
+                    {...handlers}
+                    className="features__inner"
+                    style={{ transform: `translate(-${activeIndex * 100}%)` }}
                 >
-                    {pages}
+                    {items.map((item) => {
+                        const width = "100px";
+                        return renderItem(item, width);
+                    })}
                 </div>
             </div>
+
             <div className="features__slide">
                 <img
                     className="features__slideArrow"
                     src={slideLeft}
                     alt="go left"
-                    onClick={handleLeftArrowClick}
+                    onClick={() => {
+                        updateIndex(activeIndex - 1);
+                    }}
                 />
                 <img
                     className="features__slideArrow"
                     src={slideRight}
                     alt="go right"
-                    onClick={handleRightArrowClick}
+                    onClick={() => {
+                        updateIndex(activeIndex + 1);
+                    }}
                 />
             </div>
             <div className="features__slide--text">
@@ -75,6 +62,7 @@ export const Carousel = ({ children }) => {
                 </span>
                 <span className="features__slide--text-second">/ 03</span>
             </div>
-        </div>
+        </>
     );
 };
+export default Carousel;
