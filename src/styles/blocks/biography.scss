@@ -1,0 +1,56 @@
+// Define variables for table colors and spacing
+$primary-color: #4d4d4d;
+$secondary-color: #999999;
+$light-color: #f2f2f2;
+$dark-color: #1a1a1a;
+$table-padding: 10px;
+$table-border-radius: 5px;
+
+// Define table styles
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: $table-border-radius;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
+
+  thead {
+    background-color: $primary-color;
+    color: $light-color;
+    th {
+      padding: $table-padding;
+      text-align: left;
+      font-weight: bold;
+    }
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: $light-color;
+      }
+      td {
+        padding: $table-padding;
+        border-bottom: 1px solid $secondary-color;
+        &:last-child {
+          width: 50%;
+        }
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          li {
+            margin-bottom: 5px;
+            &:last-child {
+              margin-bottom: 0;
+            }
+            strong {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
