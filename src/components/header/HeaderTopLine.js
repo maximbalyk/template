@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logo from "../../images/logo.svg";
 import menu from "../../images/menu.svg";
 import { Link } from "react-scroll";
+import Modal from "../modal/Modal";
 
 class HeaderTopLine extends Component {
     render() {
@@ -58,6 +59,16 @@ class HeaderTopLine extends Component {
                     >
                         Buy
                     </Link>
+                    <Link
+                        className="header__button--buy"
+                        to="questions"
+                        spy={true}
+                        smooth={true}
+                        duration={500}
+                    >
+                        Bio
+                    </Link>
+                    <Modal></Modal>
                 </div>
             </div>
         );

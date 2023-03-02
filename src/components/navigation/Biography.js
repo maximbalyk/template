@@ -1,95 +1,282 @@
 import { Component } from "react";
+import data from "../../api/api.json";
 
 class Biography extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            sortColumn: null,
-            sortDirection: null,
-        };
-    }
-
-    handleSort = (column) => {
-        const { sortColumn, sortDirection } = this.state;
-        let direction = "asc";
-        if (sortColumn === column && sortDirection === "asc") {
-            direction = "desc";
-        }
-        this.setState({
-            sortColumn: column,
-            sortDirection: direction,
-        });
+    state = {
+        data: [...data],
+        sortedData: [...data],
+        increase: true,
+        currentID: null,
+        currentElementID: null,
     };
 
-    render() {
-        const { data } = this.props;
-        const { sortColumn, sortDirection } = this.state;
+    handleSort() {
+        let sortedList = this.state.sortedData.sort((a, b) => {
+            return this.state.increase
+                ? b.birthYear - a.birthYear
+                : a.birthYear - b.birthYear;
+        });
 
-        let sortedData = [...data];
-        if (sortColumn !== null) {
-            sortedData.sort((a, b) => {
-                let valA = a[sortColumn];
-                let valB = b[sortColumn];
-                if (sortColumn === "birthYear") {
-                    valA = parseInt(valA);
-                    valB = parseInt(valB);
+        this.setState({
+            sortedList: sortedList,
+            increase: !this.state.increase,
+        });
+    }
+    handlePureSort() {
+        const people = JSON.parse(JSON.stringify(this.state.sortedData));
+        people.sort = function (callback = compareByBirthYear) {
+            let count;
+            do {
+                count = 0;
+                for (let i = 1; i < people.length; i++) {
+                    const prev = this[i - 1];
+                    const current = this[i];
+                    if (callback(prev, current) > 0) {
+                        count++;
+                        this[i - 1] = current;
+                        this[i] = prev;
+                    }
                 }
-                if (valA < valB) {
-                    return sortDirection === "asc" ? -1 : 1;
-                } else if (valA > valB) {
-                    return sortDirection === "asc" ? 1 : -1;
-                } else {
-                    return 0;
-                }
-            });
+            } while (count > 0);
+
+            return this;
+        };
+        const compareByBirthYear = (person1, person2) => {
+            return this.state.increase
+                ? person2.birthYear - person1.birthYear
+                : person1.birthYear - person2.birthYear;
+        };
+        const result = people.sort(compareByBirthYear);
+        this.setState({
+            sortedData: result,
+            increase: !this.state.increase,
+        });
+    }
+    handleReset() {
+        this.setState({
+            sortedData: [...this.state.data],
+            currentID: null,
+        });
+    }
+
+    addNewBio() {
+        let minYear = 1970;
+        let maxYear = 2005;
+        let newYear = Math.floor(Math.random() * (maxYear - minYear)) + minYear;
+
+        let newPerson = {
+            id: Math.random(),
+            name: "Анна",
+            birthYear: newYear,
+            bio: {
+                1990: "Народилась у Львові.",
+                2008: "Вступила до Львівського університету.",
+                2012: "Закінчила університет та почала працювати в IT-компанії.",
+                2020: "Стала керівником відділу розробки.",
+            },
+        };
+
+        let name;
+        switch (true) {
+            case newPerson.birthYear > 2000:
+                name = "Богдана";
+                break;
+            case newPerson.birthYear > 1990:
+                name = "Інна";
+                break;
+            case newPerson.birthYear > 1980:
+                name = "Петро";
+                break;
+            case newPerson.birthYear > 1970:
+                name = "Анна";
+                break;
+            default:
+                name = "Саша";
+        }
+        newPerson.name = name;
+
+        this.setState({
+            sortedData: [...this.state.sortedData, newPerson],
+        });
+    }
+    deleteBio() {
+        let result = this.state.sortedData.filter((person) => {
+            return person.id !== this.state.currentID;
+        });
+
+        this.setState({
+            sortedData: result,
+            currentID: null,
+        });
+    }
+    deleteElementBio() {
+        const { currentID, currentElementID, sortedData } = this.state;
+        let result = sortedData.map((person) => {
+            if (person.id === currentID) {
+                const filteredBio = Object.fromEntries(
+                    Object.entries(person.bio).filter(
+                        ([, value]) => value !== currentElementID
+                    )
+                );
+                return { ...person, bio: filteredBio };
+            }
+            return person;
+        });
+
+        this.setState({
+            sortedData: result,
+            currentElementIDID: null,
+        });
+    }
+    addElementBio() {
+        console.log(this.state);
+        const { currentID, sortedData } = this.state;
+        let minYear = 1970;
+        let maxYear = 2005;
+        let newYear = Math.floor(Math.random() * (maxYear - minYear)) + minYear;
+        let number = Math.floor(Math.random() * 100000000);
+        let deal;
+        switch (true) {
+            case newYear > 2000:
+                deal = `Нарахував ${number} зірок`;
+                break;
+            case newYear > 1990:
+                deal = `З'їв ${number}  мікро піц`;
+                break;
+            case newYear > 1980:
+                deal = `Прожив ${number} секунд`;
+                break;
+            case newYear > 1970:
+                deal = `Проспав ${number} секунд`;
+                break;
+            default:
+                deal = "Став керівником відділу продажів в пекарні";
         }
 
+        let result = sortedData.map((person) => {
+            if (person.id === currentID) {
+                return { ...person, bio: { ...person.bio, [newYear]: deal } };
+            }
+
+            return person;
+        });
+
+        this.setState({
+            sortedData: result,
+            currentElementIDID: null,
+        });
+
+        console.log("---------------------------------------------t");
+    }
+    render() {
+        const sortedData = this.state.sortedData;
+        const { currentID, currentElementID } = this.state;
         return (
-            <table>
-                <thead>
-                <tr>
-                    <th onClick={() => this.handleSort("id")}>
-                        ID
-                        {sortColumn === "id" && (
-                            <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
-                        )}
-                    </th>
-                    <th onClick={() => this.handleSort("name")}>
-                        Name
-                        {sortColumn === "name" && (
-                            <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
-                        )}
-                    </th>
-                    <th onClick={() => this.handleSort("birthYear")}>
-                        Birth Year
-                        {sortColumn === "birthYear" && (
-                            <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
-                        )}
-                    </th>
-                    <th>Bio</th>
-                </tr>
-                </thead>
-                <tbody>
-                {sortedData.map((item) => (
-                    <tr key={item.id}>
-                        <td>{item.id}</td>
-                        <td>{item.name}</td>
-                        <td>{item.birthYear}</td>
-                        <td>
-                            <ul>
-                                {Object.entries(item.bio).map(([year, bio]) => (
-                                    <li key={year}>
-                                        <strong>{year}:</strong> {bio}
-                                    </li>
-                                ))}
-                            </ul>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            <>
+                <button
+                    onClick={() => this.handleSort()}
+                    className="biography__btn"
+                >
+                    sort
+                </button>
+                <button
+                    onClick={() => this.handlePureSort()}
+                    className="biography__btn"
+                >
+                    sort without sort method
+                </button>
+                <button
+                    onClick={() => this.addNewBio()}
+                    className="biography__btn"
+                >
+                    add new bio
+                </button>
+                <button
+                    onClick={() => this.deleteBio()}
+                    className="biography__btn"
+                >
+                    delete bio
+                </button>
+                <button
+                    onClick={() => this.deleteElementBio()}
+                    className="biography__btn"
+                >
+                    delete el from bio
+                </button>
+                <button
+                    onClick={() => this.addElementBio()}
+                    className="biography__btn"
+                >
+                    add el from bio
+                </button>
+                <button
+                    onClick={() => this.handleReset()}
+                    className="biography__btn"
+                >
+                    reset
+                </button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Birth Year</th>
+                            <th>Biography</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {sortedData.map((item) => (
+                            <tr
+                                onClick={() => {
+                                    this.setState({
+                                        currentID: item.id,
+                                    });
+                                }}
+                                key={item.id}
+                                style={{
+                                    background:
+                                        currentID === item.id
+                                            ? "gray"
+                                            : "white",
+                                }}
+                            >
+                                <td>{item.name}</td>
+                                <td>{item.birthYear}</td>
+                                <td>
+                                    <ul>
+                                        {Object.entries(item.bio).map(
+                                            ([year, bio]) => (
+                                                <li
+                                                    onClick={() => {
+                                                        this.setState({
+                                                            currentElementID:
+                                                                bio,
+                                                        });
+                                                    }}
+                                                    key={Math.random().toString()}
+                                                    style={{
+                                                        background:
+                                                            currentElementID ===
+                                                                bio &&
+                                                            currentID ===
+                                                                item.id
+                                                                ? "#9494b5"
+                                                                : "white",
+                                                    }}
+                                                >
+                                                    <strong>{year}:</strong>{" "}
+                                                    {bio}
+                                                </li>
+                                            )
+                                        )}
+                                    </ul>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </>
         );
     }
 }
 
-export default Biography
+export default Biography;

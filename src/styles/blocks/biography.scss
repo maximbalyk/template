@@ -6,6 +6,26 @@ $dark-color: #1a1a1a;
 $table-padding: 10px;
 $table-border-radius: 5px;
 
+.biography {
+  &__btn {
+    background-color: #999;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: darken(#999, 10%);
+      cursor: pointer;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+}
+
 // Define table styles
 table {
   width: 100%;
