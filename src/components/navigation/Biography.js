@@ -221,64 +221,65 @@ class Biography extends Component {
                     <div>
                         <table>
                             <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Birth Year</th>
-                                <th>Biography</th>
-                            </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Birth Year</th>
+                                    <th>Biography</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            {sortedData.map((item) => (
-                                <tr
-                                    onClick={() => {
-                                        this.setState({
-                                            currentID: item.id,
-                                        });
-                                    }}
-                                    key={item.id}
-                                    style={{
-                                        background:
-                                            currentID === item.id
-                                                ? "#999"
-                                                : "white",
-                                    }}
-                                >
-                                    <td>{item.name}</td>
-                                    <td>{item.birthYear}</td>
-                                    <td>
-                                        <ul>
-                                            {Object.entries(item.bio).map(
-                                                ([year, bio]) => (
-                                                    <li
-                                                        onClick={() => {
-                                                            this.setState({
-                                                                currentElementID:
-                                                                bio,
-                                                            });
-                                                        }}
-                                                        key={Math.random().toString()}
-                                                        style={{
-                                                            background:
-                                                                currentElementID === bio
-                                                                    ? "rgb(124 124 127)"
-                                                                    : "none",
-                                                        }}
-                                                    >
-                                                        <strong>{year}:</strong>{" "}
-                                                        {bio}
-                                                    </li>
-                                                )
-                                            )}
-                                        </ul>
-                                    </td>
-                                </tr>
-                            ))}
+                                {sortedData.map((item) => (
+                                    <tr
+                                        onClick={() => {
+                                            this.setState({
+                                                currentID: item.id,
+                                            });
+                                        }}
+                                        key={item.id}
+                                        style={{
+                                            background:
+                                                currentID === item.id
+                                                    ? "#999"
+                                                    : "white",
+                                        }}
+                                    >
+                                        <td>{item.name}</td>
+                                        <td>{item.birthYear}</td>
+                                        <td>
+                                            <ul>
+                                                {Object.entries(item.bio).map(
+                                                    ([year, bio]) => (
+                                                        <li
+                                                            onClick={() => {
+                                                                this.setState({
+                                                                    currentElementID:
+                                                                        bio,
+                                                                });
+                                                            }}
+                                                            key={Math.random().toString()}
+                                                            style={{
+                                                                background:
+                                                                    currentElementID ===
+                                                                    bio
+                                                                        ? "rgb(124 124 127)"
+                                                                        : "none",
+                                                            }}
+                                                        >
+                                                            <strong>
+                                                                {year}:
+                                                            </strong>{" "}
+                                                            {bio}
+                                                        </li>
+                                                    )
+                                                )}
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
-
                     </div>
                 </div>
-
             </>
         );
     }
