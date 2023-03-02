@@ -173,107 +173,112 @@ class Biography extends Component {
         const { currentID, currentElementID } = this.state;
         return (
             <>
-                <button
-                    onClick={() => this.handleSort()}
-                    className="biography__btn"
-                >
-                    sort
-                </button>
-                <button
-                    onClick={() => this.handlePureSort()}
-                    className="biography__btn"
-                >
-                    sort without sort method
-                </button>
-                <button
-                    onClick={() => this.addNewBio()}
-                    className="biography__btn"
-                >
-                    add new bio
-                </button>
-                <button
-                    onClick={() => this.deleteBio()}
-                    className="biography__btn"
-                >
-                    delete bio
-                </button>
-                <button
-                    onClick={() => this.deleteElementBio()}
-                    className="biography__btn"
-                >
-                    delete el from bio
-                </button>
-                <button
-                    onClick={() => this.addElementBio()}
-                    className="biography__btn"
-                >
-                    add el from bio
-                </button>
-                <button
-                    onClick={() => this.handleReset()}
-                    className="biography__btn"
-                >
-                    reset
-                </button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Birth Year</th>
-                            <th>Biography</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {sortedData.map((item) => (
-                            <tr
-                                onClick={() => {
-                                    this.setState({
-                                        currentID: item.id,
-                                    });
-                                }}
-                                key={item.id}
-                                style={{
-                                    background:
-                                        currentID === item.id
-                                            ? "gray"
-                                            : "white",
-                                }}
-                            >
-                                <td>{item.name}</td>
-                                <td>{item.birthYear}</td>
-                                <td>
-                                    <ul>
-                                        {Object.entries(item.bio).map(
-                                            ([year, bio]) => (
-                                                <li
-                                                    onClick={() => {
-                                                        this.setState({
-                                                            currentElementID:
-                                                                bio,
-                                                        });
-                                                    }}
-                                                    key={Math.random().toString()}
-                                                    style={{
-                                                        background:
-                                                            currentElementID ===
-                                                                bio &&
-                                                            currentID ===
-                                                                item.id
-                                                                ? "#9494b5"
-                                                                : "white",
-                                                    }}
-                                                >
-                                                    <strong>{year}:</strong>{" "}
-                                                    {bio}
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
-                                </td>
+                <div>
+                    <div className="biography__btn-section">
+                        <button
+                            onClick={() => this.handleSort()}
+                            className="biography__btn"
+                        >
+                            Sort
+                        </button>
+                        <button
+                            onClick={() => this.handlePureSort()}
+                            className="biography__btn"
+                        >
+                            Sort without sort method
+                        </button>
+                        <button
+                            onClick={() => this.addNewBio()}
+                            className="biography__btn"
+                        >
+                            Add new bio of person
+                        </button>
+                        <button
+                            onClick={() => this.deleteBio()}
+                            className="biography__btn"
+                        >
+                            Delete bio of person
+                        </button>
+                        <button
+                            onClick={() => this.deleteElementBio()}
+                            className="biography__btn"
+                        >
+                            Delete element from bio
+                        </button>
+                        <button
+                            onClick={() => this.addElementBio()}
+                            className="biography__btn"
+                        >
+                            Add element to bio
+                        </button>
+                        <button
+                            onClick={() => this.handleReset()}
+                            className="biography__btn"
+                        >
+                            Reset
+                        </button>
+                    </div>
+                    <div>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Birth Year</th>
+                                <th>Biography</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                            {sortedData.map((item) => (
+                                <tr
+                                    onClick={() => {
+                                        this.setState({
+                                            currentID: item.id,
+                                        });
+                                    }}
+                                    key={item.id}
+                                    style={{
+                                        background:
+                                            currentID === item.id
+                                                ? "#999"
+                                                : "white",
+                                    }}
+                                >
+                                    <td>{item.name}</td>
+                                    <td>{item.birthYear}</td>
+                                    <td>
+                                        <ul>
+                                            {Object.entries(item.bio).map(
+                                                ([year, bio]) => (
+                                                    <li
+                                                        onClick={() => {
+                                                            this.setState({
+                                                                currentElementID:
+                                                                bio,
+                                                            });
+                                                        }}
+                                                        key={Math.random().toString()}
+                                                        style={{
+                                                            background:
+                                                                currentElementID === bio
+                                                                    ? "rgb(124 124 127)"
+                                                                    : "none",
+                                                        }}
+                                                    >
+                                                        <strong>{year}:</strong>{" "}
+                                                        {bio}
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
             </>
         );
     }
