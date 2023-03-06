@@ -1,6 +1,7 @@
 export const featuresData = [
     {
         id: 1,
+        className: "features--1",
         name: "Sound & Music",
         features: [
             "Feel-in-chest Base Power",
@@ -13,6 +14,7 @@ export const featuresData = [
     },
     {
         id: 2,
+        className: "features--2",
         name: "Connectivity",
         features: [
             "Hands Free Wireless Audio",
@@ -25,6 +27,7 @@ export const featuresData = [
     },
     {
         id: 3,
+        className: "features--3",
         name: "App Features",
         features: [
             "Customize Music Schedule",

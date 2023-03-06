@@ -15,12 +15,10 @@ class HeaderMainContent extends Component {
 
                 <div className=" grid__item--1-3 grid__item--desktop-1-4">
                     <h1 className="header__title">
-                        Futuristic Wireless Speaker
+                        {this.props.header}
                     </h1>
                     <p className="header__content-text grid__item--desktop-1-3">
-                        Luna’s performance is balanced and smooth in all
-                        frequency ranges which makes the music both naturally
-                        pleasant and distinctly more layered.
+                        {this.props.headerContent}
                     </p>
                 </div>
 

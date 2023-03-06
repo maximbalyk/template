@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../images/logo.svg";
 import toTop from "../../images/to-top.svg";
 import { Link } from "react-scroll";
+import FooterLinkItem from "./FooterLinkItem";
 
 export default class Footer extends React.Component {
     render() {
@@ -22,36 +23,18 @@ export default class Footer extends React.Component {
                 </div>
 
                 <ul className="footer__list">
-                    <li className="footer__item">
-                        <a
-                            href="https://facebook.com/"
-                            className="footer__link footer__link--facebook"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-
-                        </a>
-                    </li>
-                    <li className="footer__item">
-                        <a
-                            href="https://twitter.com/"
-                            className="footer__link footer__link--twitter"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-
-                        </a>
-                    </li>
-                    <li className="footer__item">
-                        <a
-                            href="https://www.instagram.com/"
-                            className="footer__link footer__link--instagram"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-
-                        </a>
-                    </li>
+                    <FooterLinkItem
+                        link="https://facebook.com/"
+                        className="footer__link--facebook"
+                    />
+                    <FooterLinkItem
+                        link="https://twitter.com/"
+                        className="footer__link--twitter"
+                    />
+                    <FooterLinkItem
+                        link="https://www.instagram.com/"
+                        className="footer__link--instagram"
+                    />
                 </ul>
                 <p className="footer__terms">
                     © 2019 All rights reserved. Terms of Use & Privacy Policy

@@ -5,7 +5,7 @@ import AboutUs from "./about_us/AboutUs";
 import Technology from "./technology/Technology";
 import Testimonials from "./testimonials/Testimonials";
 import Features from "./features/Features";
-import Questions from "./questions/Questions";
+import QuestionsView from "./questions/QuestionsView";
 
 export default class Main extends React.Component {
     render() {
@@ -17,7 +17,7 @@ export default class Main extends React.Component {
                 <Technology />
                 <Testimonials />
                 <Features />
-                <Questions />
+                <QuestionsView />
             </main>
         );
     }

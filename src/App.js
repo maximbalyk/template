@@ -5,7 +5,7 @@ import Navigation from "./components/navigation/Navigation";
 import Main from "./components/main/Main";
 import Footer from "./components/footer/Footer";
 import Modal from "./components/modal/Modal";
-import Biography from "./components/navigation/Biography";
+import Biography from "./components/biography/Biography";
 import React, { useState } from "react";
 
 function App() {

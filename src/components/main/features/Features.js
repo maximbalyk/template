@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import features from "../../../images/features.png";
-import  Carousel  from "./Carousel";
-import FeaturesList from "./FeaturesList";
-import {CarouselItem} from "./CarouselItem";
-import {featuresData} from './featuresData'
+import Carousel from "./Carousel";
+import { FeatureItemView } from "./FeatureItemView";
+import { featuresData } from "../../../api/featuresData";
 
 class Features extends Component {
     constructor(props) {
@@ -36,7 +35,7 @@ class Features extends Component {
                         <Carousel
                             items={featuresData}
                             renderItem={(item, width) => (
-                                <CarouselItem
+                                <FeatureItemView
                                     key={item.id}
                                     name={item.name}
                                     width={width}
@@ -45,7 +44,16 @@ class Features extends Component {
                             )}
                         ></Carousel>
                     ) : (
-                        <FeaturesList />
+                        <>
+                            {featuresData.map((item) => (
+                                <FeatureItemView
+                                    key={item.id}
+                                    features={item.features}
+                                    name={item.name}
+                                    className={item.className}
+                                />
+                            ))}
+                        </>
                     )}
 
                     <img

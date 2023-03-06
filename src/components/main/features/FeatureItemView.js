@@ -1,8 +1,8 @@
 import React from "react";
 
-export const CarouselItem = ({ name, features }) => {
+export const FeatureItemView = ({ name, features, className = "features--1" }) => {
     return(
-        <div className="features--1">
+        <div className={className}>
             <h3 className="features__title-small">
                 {name}
             </h3>

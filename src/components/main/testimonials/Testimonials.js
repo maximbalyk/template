@@ -1,26 +1,26 @@
 import React, { Component } from "react";
-import martin from "../../../images/martin.png";
+import TestimonialsView from "./TestimonialsView";
 
 class Testimonials extends Component {
+    state = {
+        testimonials:
+            "“It really took me by surprise honestly to have such\n" +
+            "full beautiful sound that coming out of this small\n" +
+            "compact device. And with the brush aluminum surface, it\n" +
+            "feels so familiar. Like my iPhone.”",
+        name: "Garrett Martin",
+        position: "Creative Director",
+    };
+
     render() {
+        const {testimonials, name, position} = this.state
         return (
-            <section className="testimonials">
-                <div className="testimonials__quote">
-                    <p className="testimonials__text">
-                        “It really took me by surprise honestly to have such
-                        full beautiful sound that coming out of this small
-                        compact device. And with the brush aluminum surface, it
-                        feels so familiar. Like my iPhone.”
-                    </p>
-                </div>
-                <img
-                    className="testimonials__avatar"
-                    src={martin}
-                    alt="Garrett Martin"
-                />
-                <p className="testimonials__name">Garrett Martin</p>
-                <p className="testimonials__position">Creative Director</p>
-            </section>
+            <TestimonialsView
+                keys={name}
+                testimonials={testimonials}
+                name={name}
+                position={position}
+            />
         );
     }
 }

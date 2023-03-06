@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Questions extends Component {
+class QuestionsView extends Component {
     render() {
         return (
             <section className="questions" id="questions">
@@ -33,4 +33,4 @@ class Questions extends Component {
     }
 }
 
-export default Questions;
+export default QuestionsView;

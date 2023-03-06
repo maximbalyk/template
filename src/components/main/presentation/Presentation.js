@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import intro from "../../../video/intro.mp4";
 import aboutUsVideo from "../../../images/about-usVideo.png";
+import intro from "../../../video/intro.mp4";
 import playIco from "../../../images/play.png";
 const Presentation = () => {
     const [play, setPlay] = useState(false);
@@ -31,7 +31,7 @@ const Presentation = () => {
             </video>
             <button
                 className={visibility}
-                onClick={handlePlay}
+                onClick={()=> handlePlay()}
                 onMouseEnter={() => {
                     setHover((hover) => !hover);
                 }}
