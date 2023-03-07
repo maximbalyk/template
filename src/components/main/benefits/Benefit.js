@@ -9,19 +9,27 @@ class Benefit extends React.Component {
         this.state = {
             image: benefitDesign,
         };
-    }
-    componentDidMount() {
-        const imageMap = {
+        this.imageMap = {
             benefitDesign: benefitDesign,
             benefitSpeakerSystem: benefitSpeakerSystem,
             benefitMultiroom: benefitMultiroom,
             benefitLighting: benefitLighting,
         };
-
+    }
+    componentDidMount() {
         this.setState({
-            image: imageMap[this.props.logoUrl],
+            image: this.imageMap[this.props.logoUrl],
         });
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps !== this.props) {
+            this.setState({
+                image: this.imageMap[this.props.logoUrl],
+            });
+        }
+    }
+
 
     render() {
         return (

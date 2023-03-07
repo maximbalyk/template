@@ -12,16 +12,10 @@ class Biography extends Component {
             currentID: null,
             currentElementID: null,
         };
-        this.handleSort = this.handleSort.bind(this);
-        this.handlePureSort = this.handlePureSort.bind(this);
-        this.handleReset = this.handleReset.bind(this);
-        this.addNewBio = this.addNewBio.bind(this);
-        this.deleteBio = this.deleteBio.bind(this);
-        this.deleteElementBio = this.deleteElementBio.bind(this);
-        this.addElementBio = this.addElementBio.bind(this);
     }
 
-    handleSort() {
+
+    handleSort = () => {
         let sortedList = this.state.sortedData.sort((a, b) => {
             return this.state.increase
                 ? b.birthYear - a.birthYear
@@ -32,44 +26,65 @@ class Biography extends Component {
             sortedList: sortedList,
             increase: !this.state.increase,
         });
-    }
-    handlePureSort() {
-        const people = JSON.parse(JSON.stringify(this.state.sortedData));
-        people.sort = function (callback = compareByBirthYear) {
+    };
+    handlePureSort = () => {
+        function deepCopy(arr) {
+            if (!Array.isArray(arr)) {
+                return arr;
+            }
+
+            return arr.map(obj => {
+                let copy = {};
+                for (let [key, value] of Object.entries(obj)) {
+                    if (Array.isArray(value)) {
+                        copy[key] = deepCopy(value);
+                    } else if (typeof value === 'object' && value !== null) {
+                        copy[key] = deepCopy(value);
+                    } else {
+                        copy[key] = value;
+                    }
+                }
+                return copy;
+            });
+        }
+
+        const people = deepCopy(this.state.sortedData);
+        function bubbleSort(array, compare = compareByBirthYear) {
             let count;
             do {
                 count = 0;
-                for (let i = 1; i < people.length; i++) {
-                    const prev = this[i - 1];
-                    const current = this[i];
-                    if (callback(prev, current) > 0) {
+                for (let i = 1; i < array.length; i++) {
+                    const prev = array[i - 1];
+                    const current = array[i];
+                    if (compare(prev, current) > 0) {
                         count++;
-                        this[i - 1] = current;
-                        this[i] = prev;
+                        array[i - 1] = current;
+                        array[i] = prev;
                     }
                 }
             } while (count > 0);
-
-            return this;
-        };
+            return array;
+        }
         const compareByBirthYear = (person1, person2) => {
             return this.state.increase
                 ? person2.birthYear - person1.birthYear
                 : person1.birthYear - person2.birthYear;
         };
-        const result = people.sort(compareByBirthYear);
+        const sortedPeople = bubbleSort(people);
         this.setState({
-            sortedData: result,
+            sortedData: sortedPeople,
             increase: !this.state.increase,
         });
-    }
-    handleReset() {
-        this.setState({
-            sortedData: [...this.state.data],
-            currentID: null,
+    };
+    handleReset = () => {
+        this.setState(({ data }) => {
+            return {
+                sortedData: data,
+                currentID: null,
+            };
         });
-    }
-    addNewBio() {
+    };
+    addNewBio = () => {
         let minYear = 1970;
         let maxYear = 2005;
         let newYear = Math.floor(Math.random() * (maxYear - minYear)) + minYear;
@@ -108,8 +123,8 @@ class Biography extends Component {
         this.setState({
             sortedData: [...this.state.sortedData, newPerson],
         });
-    }
-    deleteBio() {
+    };
+    deleteBio = () => {
         let result = this.state.sortedData.filter((person) => {
             return person.id !== this.state.currentID;
         });
@@ -118,8 +133,8 @@ class Biography extends Component {
             sortedData: result,
             currentID: null,
         });
-    }
-    deleteElementBio() {
+    };
+    deleteElementBio = () => {
         const { currentID, currentElementID, sortedData } = this.state;
         let result = sortedData.map((person) => {
             if (person.id === currentID) {
@@ -137,8 +152,8 @@ class Biography extends Component {
             sortedData: result,
             currentElementIDID: null,
         });
-    }
-    addElementBio() {
+    };
+    addElementBio = () => {
         const { currentID, sortedData } = this.state;
         let minYear = 1970;
         let maxYear = 2005;
@@ -174,7 +189,7 @@ class Biography extends Component {
             sortedData: result,
             currentElementIDID: null,
         });
-    }
+    };
     render() {
         const sortedData = this.state.sortedData;
         const { currentID, currentElementID } = this.state;
@@ -222,12 +237,11 @@ class Biography extends Component {
                                         });
                                     }}
                                     key={item.id}
-                                    style={{
-                                        background:
-                                            currentID === item.id
-                                                ? "#999"
-                                                : "white",
-                                    }}
+                                    className={
+                                        currentID === item.id
+                                            ? "biography__bio--active"
+                                            : "biography__bio"
+                                    }
                                 >
                                     <td>{item.name}</td>
                                     <td>{item.birthYear}</td>
@@ -243,17 +257,14 @@ class Biography extends Component {
                                                             });
                                                         }}
                                                         key={Math.random().toString()}
-                                                        style={{
-                                                            background:
-                                                                currentElementID ===
-                                                                bio
-                                                                    ? "rgb(124 124 127)"
-                                                                    : "none",
-                                                        }}
+                                                        className={
+                                                            currentElementID ===
+                                                            bio
+                                                                ? "biography__bio__el--active"
+                                                                : "biography__bio__el"
+                                                        }
                                                     >
-                                                        <strong>
-                                                            {year}:
-                                                        </strong>{" "}
+                                                        <strong>{year}:</strong>{" "}
                                                         {bio}
                                                     </li>
                                                 )

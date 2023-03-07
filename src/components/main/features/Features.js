@@ -26,7 +26,7 @@ class Features extends Component {
         this.setState({ isTablet: window.innerWidth < 768 });
     }
     render() {
-        const isTablet = this.state.isTablet;
+        const { isTablet } = this.state;
         return (
             <section className="features" id="features">
                 <div className="features__container">

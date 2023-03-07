@@ -7,6 +7,22 @@ $table-padding: 10px;
 $table-border-radius: 5px;
 
 .biography {
+  &__bio{
+    background-color: white;
+    transition: 0.3s;
+    &__el{
+      background: none;
+      transition: 0.3s;
+      &--active{
+        transition: 0.3s;
+        background-color: rgb(124 124 127)
+      }
+    }
+    &--active{
+      transition: 0.3s;
+      background-color: #999
+    }
+  }
   &__btn-section{
     display: flex;
     flex-wrap: wrap;
@@ -37,7 +53,6 @@ $table-border-radius: 5px;
   }
 }
 
-// Define table styles
 table {
   width: 100%;
   border-collapse: collapse;
@@ -55,6 +70,8 @@ table {
       font-weight: bold;
     }
   }
+
+
 
   tbody {
     tr {
