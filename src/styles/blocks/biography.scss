@@ -75,9 +75,6 @@ table {
 
   tbody {
     tr {
-      &:hover {
-        background-color: $light-color;
-      }
       td {
         padding: $table-padding;
         border-bottom: 1px solid $secondary-color;

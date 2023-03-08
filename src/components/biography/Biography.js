@@ -14,6 +14,27 @@ class Biography extends Component {
         };
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        document.addEventListener("keydown", this.detectKeyDown, true);
+    }
+    detectKeyDown = (e) => {
+        const { currentID, sortedData } = this.state;
+        const index = sortedData.findIndex((item) => item.id === currentID);
+        const nextElement = sortedData[index + 1];
+        const prevElement = sortedData[index - 1];
+
+        if (e.key === "ArrowDown" && nextElement) {
+            this.setState({
+                currentID: nextElement.id,
+                currentElementID: null,
+            });
+        } else if (e.key === "ArrowUp" && prevElement) {
+            this.setState({
+                currentID: prevElement.id,
+                currentElementID: null,
+            });
+        }
+    };
 
     handleSort = () => {
         let sortedList = this.state.sortedData.sort((a, b) => {
@@ -33,12 +54,12 @@ class Biography extends Component {
                 return arr;
             }
 
-            return arr.map(obj => {
+            return arr.map((obj) => {
                 let copy = {};
                 for (let [key, value] of Object.entries(obj)) {
                     if (Array.isArray(value)) {
                         copy[key] = deepCopy(value);
-                    } else if (typeof value === 'object' && value !== null) {
+                    } else if (typeof value === "object" && value !== null) {
                         copy[key] = deepCopy(value);
                     } else {
                         copy[key] = value;
@@ -190,6 +211,24 @@ class Biography extends Component {
             currentElementIDID: null,
         });
     };
+
+    chooseBio = (item) => {
+        this.setState((prevState) => {
+            const { currentElementID } = this.state;
+            const isSameBio = prevState.currentID === item.id;
+            const isSameBioElement =
+                prevState.currentElementID === currentElementID;
+
+            if (!isSameBio) {
+                return { currentID: item.id, currentElementID: null };
+            } else if (isSameBio && isSameBioElement) {
+                return { currentID: null, currentElementID: null };
+            } else {
+                return { currentID: item.id };
+            }
+        });
+    };
+
     render() {
         const sortedData = this.state.sortedData;
         const { currentID, currentElementID } = this.state;
@@ -232,11 +271,12 @@ class Biography extends Component {
                             {sortedData.map((item) => (
                                 <tr
                                     onClick={() => {
-                                        this.setState({
-                                            currentID: item.id,
-                                        });
+                                        this.chooseBio(item);
                                     }}
                                     key={item.id}
+                                    onKeyDown={(e) => {
+                                        this.keyUp(e);
+                                    }}
                                     className={
                                         currentID === item.id
                                             ? "biography__bio--active"
