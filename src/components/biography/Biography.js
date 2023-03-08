@@ -11,12 +11,50 @@ class Biography extends Component {
             increase: true,
             currentID: null,
             currentElementID: null,
+            currentItem: null,
         };
+    }
+    dragStartHandler(e, item) {
+        this.setState({ currentItem: item });
+        e.target.style.background = "white";
+    }
+
+    dragLeaveHandler(e) {
+        //continue experimenting
+    }
+
+    dragEndHandler(e) {
+        //continue experimenting
+    }
+
+    dragOverHandler(e) {
+        e.preventDefault();
+    }
+
+    dropHandler(e, item) {
+        e.preventDefault();
+        const { currentItem, sortedData } = this.state;
+        const draggedIndex = sortedData.findIndex(
+            (el) => el.id === currentItem.id
+        );
+        const droppedIndex = sortedData.findIndex((el) => el.id === item.id);
+
+        if (draggedIndex !== droppedIndex) {
+            [sortedData[draggedIndex], sortedData[droppedIndex]] = [
+                sortedData[droppedIndex],
+                sortedData[draggedIndex],
+            ];
+            this.setState({ sortedData });
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
         document.addEventListener("keydown", this.detectKeyDown, true);
     }
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.detectKeyDown, true);
+    }
+
     detectKeyDown = (e) => {
         const { currentID, sortedData } = this.state;
         const index = sortedData.findIndex((item) => item.id === currentID);
@@ -211,7 +249,6 @@ class Biography extends Component {
             currentElementIDID: null,
         });
     };
-
     chooseBio = (item) => {
         this.setState((prevState) => {
             const { currentElementID } = this.state;
@@ -282,6 +319,16 @@ class Biography extends Component {
                                             ? "biography__bio--active"
                                             : "biography__bio"
                                     }
+                                    draggable={true}
+                                    onDragStart={(e) =>
+                                        this.dragStartHandler(e, item)
+                                    }
+                                    onDragLeave={(e) =>
+                                        this.dragLeaveHandler(e)
+                                    }
+                                    onDragEnd={(e) => this.dragEndHandler(e)}
+                                    onDragOver={(e) => this.dragOverHandler(e)}
+                                    onDrop={(e) => this.dropHandler(e, item)}
                                 >
                                     <td>{item.name}</td>
                                     <td>{item.birthYear}</td>
