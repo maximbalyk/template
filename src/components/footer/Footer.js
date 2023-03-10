@@ -18,7 +18,10 @@ export default class Footer extends React.Component {
                     </a>
 
                     <Link className="footer__to-top" to="header">
-                        <img src={toTop} alt="Back to top" />
+                        <img
+                            src={toTop}
+                            alt="Back to top"
+                        />
                     </Link>
                 </div>
 

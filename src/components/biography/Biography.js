@@ -179,14 +179,17 @@ class Biography extends Component {
         }
         newPerson.name = name;
 
-        this.setState({
-            sortedData: [...this.state.sortedData, newPerson],
-        });
+        this.setState((prevState) => ({
+            sortedData: [
+                ...prevState.sortedData,
+                newPerson
+            ],
+        }));
     };
     deleteBio = () => {
-        let result = this.state.sortedData.filter((person) => {
-            return person.id !== this.state.currentID;
-        });
+        const { sortedData, currentID } = this.state;
+
+        const result = sortedData.filter(person => person.id !== currentID);
 
         this.setState({
             sortedData: result,
@@ -246,7 +249,7 @@ class Biography extends Component {
 
         this.setState({
             sortedData: result,
-            currentElementIDID: null,
+            currentElementID: null,
         });
     };
     chooseBio = (item) => {
@@ -311,9 +314,7 @@ class Biography extends Component {
                                         this.chooseBio(item);
                                     }}
                                     key={item.id}
-                                    onKeyDown={(e) => {
-                                        this.keyUp(e);
-                                    }}
+
                                     className={
                                         currentID === item.id
                                             ? "biography__bio--active"
