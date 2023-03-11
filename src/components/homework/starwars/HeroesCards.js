@@ -1,8 +1,9 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import HeroesCard from "./HeroesCard";
 
 const HeroesCards = () => {
-    const [heroes, setHeroes] = useState(null)
-    const [, setError] = useState(null)
+    const [heroes, setHeroes] = useState(null);
+    const [, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,26 +22,23 @@ const HeroesCards = () => {
         fetchData();
     }, []);
 
-
-        return (
-            <>
-                {heroes !== null
-                    ? heroes.map((hero) => (
-                          <div key={hero.created} className="card">
-                              <h2 className="card-title">{hero.name}</h2>
-                              <ul className="card-list">
-                                  <li>Born: {hero.birth_year}</li>
-                                  <li>Height: {hero.height}</li>
-                                  <li>Mass: {hero.mass}</li>
-                                  <li>Gender: {hero.gender}</li>
-                              </ul>
-                              <p className="card-date">{hero.created}</p>
-                          </div>
-                      ))
-                    : null}
-            </>
-        );
-
-}
+    return (
+        <>
+            {heroes !== null
+                ? heroes.map((hero) => (
+                      <HeroesCard
+                          key={hero.created}
+                          created={hero.created}
+                          name={hero.name}
+                          birth={hero.birth_year}
+                          height={hero.height}
+                          mass={hero.mass}
+                          gender={hero.gender}
+                      />
+                  ))
+                : null}
+        </>
+    );
+};
 
 export default HeroesCards;

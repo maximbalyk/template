@@ -1,9 +1,9 @@
 import React, { Component, Suspense } from "react";
 import "./StarWarsStyle.scss";
-import './spinner.scss'
+import "./spinner.scss";
 import { Spinner } from "./Spinner";
 
-const HeroCards = React.lazy(() => import('./HeroesCards'));
+const HeroCards = React.lazy(() => import("./HeroesCards"));
 
 class StarWars extends Component {
     render() {
