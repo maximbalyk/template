@@ -49,15 +49,12 @@ const HeaderTopLine = ({openMenu}) => {
                 >
                     UA
                 </Link>
-                <Link
+                <a
+                    href="/homework"
                     className="header__button--buy"
-                    to="questions"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
                 >
-                    Buy
-                </Link>
+                    Homework
+                </a>
             </div>
         </div>
     );
