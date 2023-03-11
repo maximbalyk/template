@@ -1,5 +1,5 @@
 import { Component } from "react";
-import data from "../../api/api.json";
+import data from "../../../api/api.json";
 import Button from "./Button";
 
 class Biography extends Component {

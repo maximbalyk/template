@@ -1,0 +1,42 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__circle {
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.5rem;
+    border-radius: 50%;
+    animation: loader 1s ease-in-out infinite;
+  }
+
+  &__circle:nth-of-type(1) {
+    background-color: #f44336;
+    animation-delay: 0s;
+  }
+
+  &__circle:nth-of-type(2) {
+    background-color: #ff9800;
+    animation-delay: 0.25s;
+  }
+
+  &__circle:nth-of-type(3) {
+    background-color: #4caf50;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes loader {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+}
