@@ -17,6 +17,7 @@
 
     &_wrapper {
         display: flex;
+        overflow: hidden;
         height: 100vh;
         flex-direction: column;
         background-image: url(https://picstatio.com/u/5eeb9f/kylo-ren-star-wars-artwork-4k.jpg);
