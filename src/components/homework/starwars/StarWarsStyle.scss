@@ -1,7 +1,6 @@
 .card {
-    color: white;
-    margin-right: 90px;
     margin-bottom: 10px;
+    color: white;
     width: 250px;
     height: 350px;
     background: none;
@@ -17,7 +16,6 @@
 
     &_wrapper {
         display: flex;
-        overflow: hidden;
         height: 100vh;
         flex-direction: column;
         background-image: url(https://picstatio.com/u/5eeb9f/kylo-ren-star-wars-artwork-4k.jpg);
@@ -25,11 +23,15 @@
         background-size: cover;
         justify-content: flex-start;
         align-items: center;
+
+        @media ("max-width: 760px") {
+            height: 100%;
+        }
     }
 
     &_paginate {
-      margin-bottom: 30px;
-      margin-top: 20px;
+        margin-bottom: 30px;
+        margin-top: 20px;
     }
     &_button {
         width: 40px;
@@ -49,8 +51,11 @@
     }
 
     &_container {
+        width: 100%;
+        justify-content: space-evenly;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
     }
 
     &:hover {
