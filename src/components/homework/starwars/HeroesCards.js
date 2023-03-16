@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import HeroesCard from "./HeroesCard";
 import { Spinner } from "./Spinner";
 import "./spinner.scss";
+import Pagination from "./pagination/Pagination";
 
 const HeroesCards = () => {
     const [heroes, setHeroes] = useState(null);
     const [error, setError] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [heroesPerPage] = useState(3);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,22 +29,41 @@ const HeroesCards = () => {
         }
     }, [heroes]);
 
+    const lastHeroesIndex = currentPage * heroesPerPage;
+    const firstHeroesIndex = lastHeroesIndex - heroesPerPage;
+    const currentHeroes =
+        heroes !== null
+            ? heroes.slice(firstHeroesIndex, lastHeroesIndex)
+            : null;
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
     return (
         <>
-            {error !== null ? <p>{error}</p> : null}
-            {heroes !== null
-                ? heroes.map((hero) => (
-                      <HeroesCard
-                          key={hero.created}
-                          created={hero.created}
-                          name={hero.name}
-                          birth={hero.birth_year}
-                          height={hero.height}
-                          mass={hero.mass}
-                          gender={hero.gender}
-                      />
-                  ))
-                : <Spinner/>}
+            <div className="card_paginate">
+                <Pagination
+                    heroesPerPage={heroesPerPage}
+                    totalPage={heroes?.length}
+                    paginate={paginate}
+                />
+            </div>
+            <div className="card_container">
+                {error !== null ? <p>{error}</p> : null}
+                {heroes !== null ? (
+                    currentHeroes.map((hero) => (
+                        <HeroesCard
+                            key={hero.created}
+                            created={hero.created}
+                            name={hero.name}
+                            birth={hero.birth_year}
+                            height={hero.height}
+                            mass={hero.mass}
+                            gender={hero.gender}
+                        />
+                    ))
+                ) : (
+                    <Spinner />
+                )}
+            </div>
         </>
     );
 };

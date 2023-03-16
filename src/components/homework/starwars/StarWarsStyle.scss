@@ -1,73 +1,91 @@
 .card {
-  margin-right: 5px;
-  margin-bottom: 5px;
-  width: 250px;
-  height: 350px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease-in-out;
-  justify-content: space-evenly;
-
-  &_wrapper {
-    padding: 100px;
-    display: -ms-flexbox;
-    display: -webkit-flex;
+    color: white;
+    margin-right: 90px;
+    margin-bottom: 10px;
+    width: 250px;
+    height: 350px;
+    background: none;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: center;
-    -webkit-align-content: stretch;
-    align-content: stretch;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-  }
+    flex-direction: column;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+    justify-content: space-evenly;
 
-  &:hover {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  &-title {
-    color: #333;
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0;
-    padding: 20px;
-    text-align: center;
-  }
-
-  &-list {
-    font-size: 16px;
-    list-style: none;
-    margin: 0;
-    padding: 0 20px;
-
-    li {
-      border-bottom: 1px solid #eee;
-      padding: 10px 0;
-
-      &:last-child {
-        border-bottom: none;
-      }
+    &_wrapper {
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+        background-image: url(https://picstatio.com/u/5eeb9f/kylo-ren-star-wars-artwork-4k.jpg);
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+        justify-content: flex-start;
+        align-items: center;
     }
-  }
 
-  &-date {
-    color: #777;
-    font-size: 12px;
-    margin: 0;
-    padding: 20px;
-    text-align: center;
-  }
+    &_paginate {
+      margin-bottom: 30px;
+      margin-top: 20px;
+    }
+    &_button {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        color: white;
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(20px);
+        border-radius: 4px;
+        transition: 300ms;
+
+        &:hover {
+            transition: 300ms;
+            transform: scale(1.1);
+        }
+    }
+
+    &_container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &:hover {
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    &-title {
+        color: white;
+        font-size: 24px;
+        font-weight: 700;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+    }
+
+    &-list {
+        font-size: 16px;
+        list-style: none;
+        margin: 0;
+        padding: 0 20px;
+
+        li {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
+    &-date {
+        color: white;
+        font-size: 12px;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+    }
 }
-
