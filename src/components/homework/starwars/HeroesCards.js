@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import HeroesCard from "./HeroesCard";
 import { Spinner } from "./Spinner";
+import "./spinner.scss";
+
 const HeroesCards = () => {
     const [heroes, setHeroes] = useState(null);
     const [error, setError] = useState(null);

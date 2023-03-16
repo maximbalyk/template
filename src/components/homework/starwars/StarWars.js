@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./StarWarsStyle.scss";
-import "./spinner.scss";
 import HeroesCards from "./HeroesCards";
 
 class StarWars extends Component {
