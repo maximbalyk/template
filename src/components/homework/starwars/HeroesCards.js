@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import HeroesCard from "./HeroesCard";
-
+import { Spinner } from "./Spinner";
 const HeroesCards = () => {
     const [heroes, setHeroes] = useState(null);
-    const [, setError] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,11 +19,14 @@ const HeroesCards = () => {
             }
         };
 
-        fetchData();
-    }, []);
+        if (heroes === null) {
+            fetchData();
+        }
+    }, [heroes]);
 
     return (
         <>
+            {error !== null ? <p>{error}</p> : null}
             {heroes !== null
                 ? heroes.map((hero) => (
                       <HeroesCard
@@ -36,7 +39,7 @@ const HeroesCards = () => {
                           gender={hero.gender}
                       />
                   ))
-                : null}
+                : <Spinner/>}
         </>
     );
 };

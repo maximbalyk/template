@@ -16,7 +16,6 @@ class Biography extends Component {
     }
     dragStartHandler(e, item) {
         this.setState({ currentItem: item });
-        e.target.style.background = "white";
     }
 
     dragLeaveHandler(e) {
@@ -34,17 +33,20 @@ class Biography extends Component {
     dropHandler(e, item) {
         e.preventDefault();
         const { currentItem, sortedData } = this.state;
-        const draggedIndex = sortedData.findIndex(
+        const dataForDrop = [...sortedData];
+        const draggedIndex = dataForDrop.findIndex(
             (el) => el.id === currentItem.id
         );
-        const droppedIndex = sortedData.findIndex((el) => el.id === item.id);
+        const droppedIndex = dataForDrop.findIndex((el) => el.id === item.id);
 
         if (draggedIndex !== droppedIndex) {
-            [sortedData[draggedIndex], sortedData[droppedIndex]] = [
-                sortedData[droppedIndex],
-                sortedData[draggedIndex],
+            [dataForDrop[draggedIndex], dataForDrop[droppedIndex]] = [
+                dataForDrop[droppedIndex],
+                dataForDrop[draggedIndex],
             ];
-            this.setState({ sortedData });
+            this.setState(() => {
+                return { sortedData: dataForDrop };
+            });
         }
     }
 
@@ -67,9 +69,11 @@ class Biography extends Component {
                 currentElementID: null,
             });
         } else if (e.key === "ArrowUp" && prevElement) {
-            this.setState({
-                currentID: prevElement.id,
-                currentElementID: null,
+            this.setState(() => {
+                return {
+                    currentID: prevElement.id,
+                    currentElementID: null,
+                };
             });
         }
     };
@@ -87,49 +91,30 @@ class Biography extends Component {
         });
     };
     handlePureSort = () => {
-        function deepCopy(arr) {
-            if (!Array.isArray(arr)) {
-                return arr;
-            }
-
-            return arr.map((obj) => {
-                let copy = {};
-                for (let [key, value] of Object.entries(obj)) {
-                    if (Array.isArray(value)) {
-                        copy[key] = deepCopy(value);
-                    } else if (typeof value === "object" && value !== null) {
-                        copy[key] = deepCopy(value);
-                    } else {
-                        copy[key] = value;
-                    }
-                }
-                return copy;
-            });
-        }
-
-        const people = deepCopy(this.state.sortedData);
+        const sortedData = this.state.sortedData;
         function bubbleSort(array, compare = compareByBirthYear) {
+            let myArr = [...array];
             let count;
             do {
                 count = 0;
                 for (let i = 1; i < array.length; i++) {
-                    const prev = array[i - 1];
-                    const current = array[i];
+                    const prev = myArr[i - 1];
+                    const current = myArr[i];
                     if (compare(prev, current) > 0) {
                         count++;
-                        array[i - 1] = current;
-                        array[i] = prev;
+                        myArr[i - 1] = current;
+                        myArr[i] = prev;
                     }
                 }
             } while (count > 0);
-            return array;
+            return myArr;
         }
         const compareByBirthYear = (person1, person2) => {
             return this.state.increase
                 ? person2.birthYear - person1.birthYear
                 : person1.birthYear - person2.birthYear;
         };
-        const sortedPeople = bubbleSort(people);
+        const sortedPeople = bubbleSort(sortedData);
         this.setState({
             sortedData: sortedPeople,
             increase: !this.state.increase,
@@ -180,20 +165,19 @@ class Biography extends Component {
         newPerson.name = name;
 
         this.setState((prevState) => ({
-            sortedData: [
-                ...prevState.sortedData,
-                newPerson
-            ],
+            sortedData: [...prevState.sortedData, newPerson],
         }));
     };
     deleteBio = () => {
         const { sortedData, currentID } = this.state;
 
-        const result = sortedData.filter(person => person.id !== currentID);
+        const result = sortedData.filter((person) => person.id !== currentID);
 
-        this.setState({
-            sortedData: result,
-            currentID: null,
+        this.setState(() => {
+            return {
+                sortedData: result,
+                currentID: null,
+            };
         });
     };
     deleteElementBio = () => {
@@ -210,9 +194,11 @@ class Biography extends Component {
             return person;
         });
 
-        this.setState({
-            sortedData: result,
-            currentElementIDID: null,
+        this.setState(() => {
+            return {
+                sortedData: result,
+                currentElementIDID: null,
+            };
         });
     };
     addElementBio = () => {
@@ -247,9 +233,11 @@ class Biography extends Component {
             return person;
         });
 
-        this.setState({
-            sortedData: result,
-            currentElementID: null,
+        this.setState(() => {
+            return {
+                sortedData: result,
+                currentElementID: null,
+            };
         });
     };
     chooseBio = (item) => {
@@ -314,7 +302,6 @@ class Biography extends Component {
                                         this.chooseBio(item);
                                     }}
                                     key={item.id}
-
                                     className={
                                         currentID === item.id
                                             ? "biography__bio--active"

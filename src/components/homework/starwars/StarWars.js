@@ -1,17 +1,13 @@
-import React, { Component, Suspense } from "react";
+import React, { Component } from "react";
 import "./StarWarsStyle.scss";
 import "./spinner.scss";
-import { Spinner } from "./Spinner";
-
-const HeroCards = React.lazy(() => import("./HeroesCards"));
+import HeroesCards from "./HeroesCards";
 
 class StarWars extends Component {
     render() {
         return (
             <div className="card_wrapper">
-                <Suspense fallback={<Spinner />}>
-                    <HeroCards />
-                </Suspense>
+                <HeroesCards />
             </div>
         );
     }
