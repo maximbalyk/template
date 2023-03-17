@@ -8,7 +8,7 @@ export const featuresData = [
             "Lossless Digital Audio Transmission",
             "Easy & Stable Stereo Pairing",
             "Crisp and Clear High Frequency Sound",
-            "Streams from Cloud Music and Local\n Library" ,
+            "Streams from Cloud Music and Local\n Library",
             "Auto Music Playback from Last Song\n Stopped",
         ],
     },
@@ -34,6 +34,47 @@ export const featuresData = [
             "Wake Up with Favorite Songs",
             "Home Detection Auto Wake Up",
             "Color Wheel & Saturation Change",
+        ],
+    },
+];
+
+export const featurelistUkr = [
+    {
+        id: 1,
+        className: "features--1",
+        name: "Звук та музика",
+        features: [
+            "Потужній бас, який відчувається у грудях",
+            "Безвтратна цифрова передача аудіосигналу",
+            "Легке та стійке стереопарування",
+            "Чіткий та ясний звук високої частоти",
+            "Відтворення музики з хмарних сервісів\n"
+            +" та локальної бібліотеки",
+            "Автоматичне відтворення останньої\n зупиненої композиції",
+        ],
+    },
+    {
+        id: 2,
+        className: "features--2",
+        name: "Підключення",
+        features: [
+            "Бездротовий звук без рук",
+            "Bluetooth 4.0 LE",
+            "Wi-Fi 2.4 GHz (802.11 b/g/n)",
+            "Розумна система налаштування\n багатокімнатної аудіосистеми",
+            "Режим вечірки з 6 одиниць та більше",
+            "Могутня мережа багатоканальних\n гучномовців MESHNET",
+        ],
+    },
+    {
+        id: 3,
+        className: "features--3",
+        name: "Особливості додатку",
+        features: [
+            "Налаштування розкладу музики",
+            "Прокидання з улюбленими піснями",
+            "Автоматичний розблокування домашньої мережі",
+            "Зміна колірної палітри та насиченості",
         ],
     },
 ];

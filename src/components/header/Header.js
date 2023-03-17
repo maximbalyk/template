@@ -7,11 +7,6 @@ class Header extends React.Component {
     state = {
         activeMenu: false,
         pixel: "100%",
-        header: "Futuristic Wireless Speaker",
-        headerContent:
-            "Luna’s performance is balanced and smooth in all\n" +
-            "frequency ranges which makes the music both naturally\n" +
-            "pleasant and distinctly more layered.",
     };
     toggleMenu = () => {
         this.setState(({ activeMenu }) => ({
@@ -20,14 +15,11 @@ class Header extends React.Component {
         }));
     };
     render() {
-        const { header, headerContent, pixel } = this.state;
+        const { pixel } = this.state;
         return (
             <header className="header">
                 <HeaderTopLine pixel={pixel} openMenu={this.toggleMenu} />
-                <HeaderMainContent
-                    header={header}
-                    headerContent={headerContent}
-                />
+                <HeaderMainContent />
                 <HeaderNavigationMenu
                     pixel={pixel}
                     closedMenu={this.toggleMenu}

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-scroll"
+import { withTranslation } from "react-i18next";
 
-export default class Navigation extends React.Component {
+class Navigation extends Component {
     render() {
+        const { t } = this.props
         return (
             <nav className="desktop desktop__menu">
                 <ul className="desktop__menu">
@@ -14,7 +16,7 @@ export default class Navigation extends React.Component {
                             smooth={true}
                             duration={500}
                         >
-                            OUR STORY
+                            {t("ourStory")}
                         </Link>
                     </li>
                     <li className="desktop__menu-item">
@@ -25,7 +27,7 @@ export default class Navigation extends React.Component {
                             smooth={true}
                             duration={500}
                         >
-                            ABOUT US
+                            {t("About us")}
                         </Link>
                     </li>
                     <li className="desktop__menu-item">
@@ -36,7 +38,7 @@ export default class Navigation extends React.Component {
                             smooth={true}
                             duration={500}
                         >
-                            TECHNOLOGY
+                            {t("Technology")}
                         </Link>
                     </li>
                     <li className="desktop__menu-item">
@@ -47,7 +49,7 @@ export default class Navigation extends React.Component {
                             smooth={true}
                             duration={500}
                         >
-                            FEATURES
+                            {t("Feature")}
                         </Link>
                     </li>
                     <li className="desktop__menu-item">
@@ -58,7 +60,7 @@ export default class Navigation extends React.Component {
                             smooth={true}
                             duration={500}
                         >
-                            GET IN TOUCH
+                            {t("Get in touch")}
                         </Link>
                     </li>
                 </ul>
@@ -66,3 +68,4 @@ export default class Navigation extends React.Component {
         );
     }
 }
+export default withTranslation()(Navigation);

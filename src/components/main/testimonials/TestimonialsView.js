@@ -1,23 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
 import martin from "../../../images/martin.png";
+import { withTranslation } from "react-i18next";
 
-function TestimonialsView({ testimonials, name, position }) {
-    return (
-        <section className="testimonials">
-            <div className="testimonials__quote">
-                <p className="testimonials__text">
-                    {testimonials}
-                </p>
-            </div>
-            <img
-                className="testimonials__avatar"
-                src={martin}
-                alt={name}
-            />
-            <p className="testimonials__name">{name}</p>
-            <p className="testimonials__position">{position}</p>
-        </section>
-    );
+class TestimonialsView extends Component {
+    render() {
+        const { t } = this.props;
+        return (
+            <section className="testimonials">
+                <div className="testimonials__quote">
+                    <p className="testimonials__text">{t("testimonials")}</p>
+                </div>
+                <img className="testimonials__avatar" src={martin} alt={t("name")} />
+                <p className="testimonials__name">{t("name")}</p>
+                <p className="testimonials__position">{t("position")}</p>
+            </section>
+        );
+    }
 }
 
-export default TestimonialsView;
+export default withTranslation()(TestimonialsView);

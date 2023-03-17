@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import technologyImageDesktop from "../../../images/technologyImageDesktop.png";
+import { withTranslation } from "react-i18next";
 
 class Technology extends Component {
     render() {
+        const {t} = this.props
         return (
             <section className="technology" id="technology">
-                <h2 className="technology__title">technology</h2>
+                <h2 className="technology__title">{t("Technology")}</h2>
                 <img
                     src={technologyImageDesktop}
                     alt="technology of speaker"
@@ -16,4 +18,4 @@ class Technology extends Component {
     }
 }
 
-export default Technology;
+export default withTranslation()(Technology);

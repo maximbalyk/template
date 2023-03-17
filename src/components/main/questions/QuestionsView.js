@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
 
 class QuestionsView extends Component {
     render() {
+        const { t } = this.props;
         return (
             <section className="questions" id="questions">
                 <div className="grid">
                     <h2 className="questions__title grid__item--1-4 grid__item--desktop-2-6">
-                        DO YOU HAVE ANY QUESTIONS?
+                        {t("QUESTIONS")}
                     </h2>
                     <form
                         action="src/components/main"
@@ -16,16 +18,16 @@ class QuestionsView extends Component {
                             required
                             name="email"
                             type="email"
-                            placeholder="Your email"
+                            placeholder={t("Your email")}
                             className="questions__field"
                         />
                         <textarea
                             required
                             name="message"
-                            placeholder="Your message..."
+                            placeholder={t("Your message")}
                             className="questions__field questions__textarea"
                         />
-                        <button className="questions__button">SEND</button>
+                        <button className="questions__button">{t("SEND")}</button>
                     </form>
                 </div>
             </section>
@@ -33,4 +35,4 @@ class QuestionsView extends Component {
     }
 }
 
-export default QuestionsView;
+export default withTranslation()(QuestionsView);

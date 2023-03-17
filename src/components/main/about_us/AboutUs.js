@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import aboutUsImages from "../../../images/about-usImage.png";
-import {Link} from "react-scroll";
+import { Link } from "react-scroll";
+import { withTranslation } from "react-i18next";
 
 class AboutUs extends Component {
     render() {
+        const { t } = this.props;
         return (
             <section className="about-us" id="aboutUS">
-                <h2 className="about-us__title">DESIGNED FOR THE FUTURE</h2>
+                <h2 className="about-us__title">
+                    {t("DESIGNED FOR THE FUTURE")}
+                </h2>
 
                 <img
                     src={aboutUsImages}
@@ -14,11 +18,7 @@ class AboutUs extends Component {
                     className="about-us__image"
                 />
                 <p className="about-us__text">
-                    In 2014, a group of geeky industrial designers, engineering
-                    veterans and acoustic experts formed crazybaby. This is a
-                    bunch of passionate people who are crazy enough to think
-                    they can challenge the industry with disruptive audio
-                    products.
+                    {t("DESIGNED FOR THE FUTURE Description")}
                 </p>
                 <div className="about-us__container">
                     <Link
@@ -28,7 +28,7 @@ class AboutUs extends Component {
                         smooth={true}
                         duration={500}
                     >
-                        See more about us
+                        {t("See more about us")}
                     </Link>
                 </div>
             </section>
@@ -36,4 +36,4 @@ class AboutUs extends Component {
     }
 }
 
-export default AboutUs;
+export default withTranslation()(AboutUs);

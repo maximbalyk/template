@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../images/logo.svg";
 import menu from "../../images/menu.svg";
-import { Link } from "react-scroll";
+import i18n from "i18next";
 
-const HeaderTopLine = ({openMenu}) => {
-
+const HeaderTopLine = ({ openMenu }) => {
+    const [isEnActive, setIsEnActive] = useState(false);
     return (
         <div className="header__top">
             <div className="header__logo">
@@ -12,52 +12,46 @@ const HeaderTopLine = ({openMenu}) => {
             </div>
 
             <div className="header__menu-icon">
-                <button
-                    className="header__menu-btn"
-                    onClick={openMenu}
-                >
+                <button className="header__menu-btn" onClick={openMenu}>
                     <img src={menu} alt="menu-icon" />
                 </button>
             </div>
 
             <div className="header__buttons">
-                <Link
-                    className="header__button "
-                    to="specs"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                >
-                    SPECS
-                </Link>
-                <Link
-                    className="header__button header__button--active"
-                    to="en"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
+                <a className="header__button ">SPECS</a>
+                <a
+                    className={
+                        isEnActive
+                            ? "header__button header__button--active"
+                            : "header__button"
+                    }
+                    onClick={() => {
+                        setIsEnActive(!isEnActive);
+                        i18n.changeLanguage("en");
+                    }}
                 >
                     EN
-                </Link>
-
-                <Link
-                    className="header__button"
-                    to="ua"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
+                </a>
+                <a className="header__button">/</a>
+                <a
+                    className={
+                        isEnActive
+                            ? "header__button"
+                            : "header__button header__button--active"
+                    }
+                    onClick={() => {
+                        setIsEnActive(!isEnActive);
+                        i18n.changeLanguage("ua");
+                    }}
                 >
                     UA
-                </Link>
-                <a
-                    href="/homework"
-                    className="header__button--buy"
-                >
+                </a>
+                <a href="/homework" className="header__button--buy">
                     Homework
                 </a>
             </div>
         </div>
     );
-}
+};
 
 export default HeaderTopLine;

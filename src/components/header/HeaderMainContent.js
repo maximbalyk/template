@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import wirelessSpeaker_original from "../../images/wirelessSpeaker_original.svg";
+import { withTranslation } from 'react-i18next';
+
 
 class HeaderMainContent extends Component {
     render() {
+        const { t } = this.props
         return (
             <div className="grid ">
                 <div className="grid__item--blink">
@@ -15,10 +18,10 @@ class HeaderMainContent extends Component {
 
                 <div className=" grid__item--1-3 grid__item--desktop-1-4">
                     <h1 className="header__title">
-                        {this.props.header}
+                        {t("header")}
                     </h1>
                     <p className="header__content-text grid__item--desktop-1-3">
-                        {this.props.headerContent}
+                        {t("headerContent")}
                     </p>
                 </div>
 
@@ -34,4 +37,4 @@ class HeaderMainContent extends Component {
     }
 }
 
-export default HeaderMainContent;
+export default withTranslation()(HeaderMainContent);

@@ -67,6 +67,7 @@
         font-size: 14px;
         line-height: 21px;
         padding-bottom: 10px;
+        word-wrap: break-word;
     }
 
     &__slide {
@@ -172,14 +173,14 @@
 
     &__carousel {
         padding: 0;
-        height: 260px;
+        height: 340px;;
         width: 330px;
         overflow: hidden;
     }
     &__inner {
         display: flex;
         flex-direction: row;
-        white-space: nowrap;
+        white-space: break-spaces;
         transition: transform 0.3s;
         justify-content: flex-start;
     }

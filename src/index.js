@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homework from "./components/homework/Homework";
+import './i18n'
+
 const router = createBrowserRouter([
     {
         path: "/template",
