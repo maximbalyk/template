@@ -18,10 +18,21 @@
 
     &__buttons {
         display: none;
+        transition: 300ms;
+
 
         :nth-child(2),
         :nth-child(3) {
             margin-right: 0;
+        }
+
+        :nth-child(2),
+        :nth-child(4) {
+            cursor: pointer;
+            &:hover {
+                transition: 300ms;
+                transform: scale(1.1);
+            }
         }
 
         @include onTablet {
@@ -36,7 +47,6 @@
         margin-right: 10px;
         border: none;
         background: none;
-        cursor: pointer;
 
         color: #828282;
         text-decoration: none;
