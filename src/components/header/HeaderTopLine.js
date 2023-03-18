@@ -4,7 +4,7 @@ import menu from "../../images/menu.svg";
 import i18n from "i18next";
 
 const HeaderTopLine = ({ openMenu }) => {
-    const [isEnActive, setIsEnActive] = useState(false);
+    const [isEnActive, setIsEnActive] = useState(true);
     return (
         <div className="header__top">
             <div className="header__logo">
@@ -26,9 +26,10 @@ const HeaderTopLine = ({ openMenu }) => {
                             : "header__button"
                     }
                     onClick={() => {
-                        isEnActive ? i18n.changeLanguage("en") : i18n.changeLanguage("ua")
                         setIsEnActive(!isEnActive);
-
+                        i18n.language === "en"
+                            ? i18n.changeLanguage("ua")
+                            : i18n.changeLanguage("en");
                     }}
                 >
                     EN
@@ -41,8 +42,10 @@ const HeaderTopLine = ({ openMenu }) => {
                             : "header__button header__button--active"
                     }
                     onClick={() => {
-                        isEnActive ? i18n.changeLanguage("ua") : i18n.changeLanguage("en")
                         setIsEnActive(!isEnActive);
+                        i18n.language === "en"
+                            ? i18n.changeLanguage("ua")
+                            : i18n.changeLanguage("en");
                     }}
                 >
                     UA
