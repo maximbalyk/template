@@ -26,8 +26,9 @@ const HeaderTopLine = ({ openMenu }) => {
                             : "header__button"
                     }
                     onClick={() => {
+                        isEnActive ? i18n.changeLanguage("en") : i18n.changeLanguage("ua")
                         setIsEnActive(!isEnActive);
-                        i18n.changeLanguage("en");
+
                     }}
                 >
                     EN
@@ -40,8 +41,8 @@ const HeaderTopLine = ({ openMenu }) => {
                             : "header__button header__button--active"
                     }
                     onClick={() => {
+                        isEnActive ? i18n.changeLanguage("ua") : i18n.changeLanguage("en")
                         setIsEnActive(!isEnActive);
-                        i18n.changeLanguage("ua");
                     }}
                 >
                     UA
