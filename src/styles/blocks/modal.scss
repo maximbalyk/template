@@ -17,6 +17,7 @@
   z-index: 2;
   opacity: 1;
   pointer-events: all;
+
 }
 
 .modal__content {
@@ -24,11 +25,28 @@
   height: 30vw;
   padding: 0 20px 20px 20px;
   border-radius: 12px;
-  background-color: white;
+  background-color: #19191d;
   transform: scale(0.5);
   transition: 0.4s all;
   overflow: hidden;
   overflow-y:scroll;
+  & {
+    scrollbar-width: none;
+    scrollbar-color: #25252b #080808;
+  }
+
+  &::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #19191d;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #25252b;
+    border-radius: 8px;
+  }
 }
 
 .modal__content.active {

@@ -8,19 +8,19 @@ $table-border-radius: 5px;
 
 .biography {
   &__bio{
-    background-color: white;
+    background-color: #25252b;
     transition: 0.3s;
     &__el{
       background: none;
       transition: 0.3s;
       &--active{
         transition: 0.3s;
-        background-color: rgb(124 124 127)
+        background-color: #5a595e
       }
     }
     &--active{
       transition: 0.3s;
-      background-color: #999
+      background-color: #343a40
     }
   }
   &__btn-section{
@@ -29,12 +29,12 @@ $table-border-radius: 5px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: #333;
+    background-color: #19191d;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }
   &__btn {
-    background-color: #999;
+    background-color: #25252b;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -64,6 +64,9 @@ table {
   thead {
     background-color: $primary-color;
     color: $light-color;
+    tr {
+      background: #19191d;
+    }
     th {
       padding: $table-padding;
       text-align: left;
@@ -75,9 +78,11 @@ table {
 
   tbody {
     tr {
+      border-bottom: #19191d 5px solid;
+      color: white;
       td {
         padding: $table-padding;
-        border-bottom: 1px solid $secondary-color;
+        margin-bottom: 3px;
         &:last-child {
           width: 50%;
         }

@@ -261,7 +261,7 @@ class Biography extends Component {
         const sortedData = this.state.sortedData;
         const { currentID, currentElementID } = this.state;
         return (
-            <>
+            < div id="style-2">
                 <div className="biography__btn-section">
                     <Button onClick={this.handleSort} text={"Sort"} />
                     <Button
@@ -286,9 +286,9 @@ class Biography extends Component {
                     />
                     <Button onClick={this.handleReset} text={"Reset"} />
                 </div>
-                <div>
+                <div >
                     <table>
-                        <thead>
+                        <thead className="table-heading">
                             <tr>
                                 <th>Name</th>
                                 <th>Birth Year</th>
@@ -351,7 +351,7 @@ class Biography extends Component {
                         </tbody>
                     </table>
                 </div>
-            </>
+            </div>
         );
     }
 }
