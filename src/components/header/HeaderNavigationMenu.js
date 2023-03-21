@@ -4,12 +4,13 @@ import { Link } from "react-scroll";
 
 class HeaderNavigationMenu extends Component {
     render() {
+        const { pixel, closedMenu } = this.props;
         return (
             <nav
                 className="page__menu menu"
                 id="menu"
                 style={{
-                    transform: `translateX(${this.props.pixel})`,
+                    transform: `translateX(${pixel})`,
                 }}
             >
                 <div className="menu__content">
@@ -17,7 +18,7 @@ class HeaderNavigationMenu extends Component {
                         <li className="menu__item">
                             <button
                                 className="header__menu-btn"
-                                onClick={this.props.closedMenu}
+                                onClick={closedMenu}
                             >
                                 <img src={cross} alt="cross" />
                             </button>

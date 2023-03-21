@@ -27,7 +27,7 @@ const HeroesCards = () => {
         if (heroes === null) {
             fetchData();
         }
-    }, [heroes]);
+    }, []);
 
     const lastHeroesIndex = currentPage * heroesPerPage;
     const firstHeroesIndex = lastHeroesIndex - heroesPerPage;
@@ -38,7 +38,7 @@ const HeroesCards = () => {
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     return (
-        <>
+        <div className="card_wrapper">
             <div className="card_paginate">
                 <Pagination
                     heroesPerPage={heroesPerPage}
@@ -47,7 +47,7 @@ const HeroesCards = () => {
                 />
             </div>
             <div className="card_container">
-                {error !== null ? <p>{error}</p> : null}
+                {error && <p>{error}</p>}
                 {heroes !== null ? (
                     currentHeroes.map((hero) => (
                         <HeroesCard
@@ -64,7 +64,7 @@ const HeroesCards = () => {
                     <Spinner />
                 )}
             </div>
-        </>
+        </div>
     );
 };
 

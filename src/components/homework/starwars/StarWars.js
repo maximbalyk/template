@@ -4,11 +4,7 @@ import HeroesCards from "./HeroesCards";
 
 class StarWars extends Component {
     render() {
-        return (
-            <div className="card_wrapper">
-                <HeroesCards />
-            </div>
-        );
+        return <HeroesCards />;
     }
 }
 

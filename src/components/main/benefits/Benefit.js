@@ -8,41 +8,29 @@ class Benefit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            image: benefitDesign,
+            imageMap: {
+                benefitDesign: benefitDesign,
+                benefitSpeakerSystem: benefitSpeakerSystem,
+                benefitMultiroom: benefitMultiroom,
+                benefitLighting: benefitLighting,
+            },
         };
-        this.imageMap = {
-            benefitDesign: benefitDesign,
-            benefitSpeakerSystem: benefitSpeakerSystem,
-            benefitMultiroom: benefitMultiroom,
-            benefitLighting: benefitLighting,
-        };
-    }
-    componentDidMount() {
-        this.setState({
-            image: this.imageMap[this.props.logoUrl],
-        });
-    }
 
-    componentDidUpdate(prevProps, prevState) {
-        if(prevProps !== this.props) {
-            this.setState({
-                image: this.imageMap[this.props.logoUrl],
-            });
-        }
     }
-
-
     render() {
-        const { t } = this.props
+        const { t, benefitName,logoUrl } = this.props;
+        const { imageMap } = this.state;
         return (
             <div className="benefit">
                 <img
-                    src={this.state.image}
+                    src={imageMap[logoUrl]}
                     alt="Benefit benefitDesign"
                     className="benefit__logo"
                 />
-                <h2 className="benefit__title">{t(`${this.props.benefitName}`)}</h2>
-                <p className="benefit__text">{t(`${this.props.benefitName}` + " Description")}</p>
+                <h2 className="benefit__title">{t(`${benefitName}`)}</h2>
+                <p className="benefit__text">
+                    {t(`${benefitName}` + " Description")}
+                </p>
             </div>
         );
     }

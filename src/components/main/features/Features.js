@@ -14,7 +14,9 @@ class Features extends Component {
             error: false,
         };
 
-        this.updatePredicate = this.updatePredicate.bind(this);
+        this.updatePredicate = () => {
+            this.setState({ isTablet: window.innerWidth < 768 });
+        }
     }
     async componentDidMount() {
         this.updatePredicate();
@@ -47,7 +49,7 @@ class Features extends Component {
         this.setState({ isTablet: window.innerWidth < 768 });
     }
     render() {
-        const { isTablet } = this.state;
+        const { isTablet,imageUrl } = this.state;
         let dataForRender =
             i18n.language === "en" ? featuresData : featurelistUkr;
         const { t } = this.props;
@@ -81,7 +83,7 @@ class Features extends Component {
                     )}
 
                     <img
-                        src={this.state.imageUrl}
+                        src={imageUrl}
                         alt="features speakers"
                         className="features__image"
                     />

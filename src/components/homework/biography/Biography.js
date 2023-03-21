@@ -11,19 +11,13 @@ class Biography extends Component {
             increase: true,
             currentID: null,
             currentElementID: null,
+            isCheckedCurrentElementID: false,
+            prevElementID: null,
             currentItem: null,
         };
     }
     dragStartHandler(e, item) {
         this.setState({ currentItem: item });
-    }
-
-    dragLeaveHandler(e) {
-        //continue experimenting
-    }
-
-    dragEndHandler(e) {
-        //continue experimenting
     }
 
     dragOverHandler(e) {
@@ -241,27 +235,26 @@ class Biography extends Component {
         });
     };
     chooseBio = (item) => {
-        this.setState((prevState) => {
-            const { currentElementID } = this.state;
-            const isSameBio = prevState.currentID === item.id;
-            const isSameBioElement =
-                prevState.currentElementID === currentElementID;
+        let prevState = { ...this.state };
+        this.setState(({ currentID, currentElementID }) => {
+            const isSameBio = currentID === item.id;
+            const isSameBioElement = currentElementID !== prevState.currentElementID;
 
             if (!isSameBio) {
                 return { currentID: item.id, currentElementID: null };
-            } else if (isSameBio && isSameBioElement) {
+            } else if (isSameBio && !isSameBioElement) {
                 return { currentID: null, currentElementID: null };
             } else {
                 return { currentID: item.id };
             }
         });
+
     };
 
     render() {
-        const sortedData = this.state.sortedData;
-        const { currentID, currentElementID } = this.state;
+        const { currentID, currentElementID, sortedData } = this.state;
         return (
-            < div id="style-2">
+            <div id="style-2">
                 <div className="biography__btn-section">
                     <Button onClick={this.handleSort} text={"Sort"} />
                     <Button
@@ -286,7 +279,7 @@ class Biography extends Component {
                     />
                     <Button onClick={this.handleReset} text={"Reset"} />
                 </div>
-                <div >
+                <div>
                     <table>
                         <thead className="table-heading">
                             <tr>
@@ -326,10 +319,16 @@ class Biography extends Component {
                                                 ([year, bio]) => (
                                                     <li
                                                         onClick={() => {
-                                                            this.setState({
-                                                                currentElementID:
-                                                                    bio,
-                                                            });
+                                                            this.setState(
+                                                                (prevState) => {
+                                                                    return {
+                                                                        currentElementID:
+                                                                            bio,
+                                                                        isCheckedCurrentElementID:
+                                                                            !prevState.isCheckedCurrentElementID,
+                                                                    };
+                                                                }
+                                                            );
                                                         }}
                                                         key={Math.random().toString()}
                                                         className={

@@ -2,25 +2,20 @@ import React, { useState } from "react";
 import slideLeft from "../../../images/slide-left.svg";
 import slideRight from "../../../images/slide-right.svg";
 import { useSwipeable } from "react-swipeable";
+import { SLIDER_WIDTH } from "../../../assets/constants";
 
 const Carousel = ({ items, renderItem }) => {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [countPages, setCountPages] = useState(1);
+    const updateIndex = (currentIndex, value) =>
+        Math.min(Math.max(currentIndex + value, 0), items.length - 1);
 
-    const updateIndex = (newIndex) => {
-        if (newIndex < 0) {
-            newIndex = 0;
-        } else if (newIndex >= items.length) {
-            newIndex = items.length - 1;
-        }
-
-        setActiveIndex(newIndex);
-        setCountPages(newIndex + 1);
-    };
+    const incrementSlide = () => setActiveIndex((prev) => updateIndex(prev, 1));
+    const decrementSlide = () =>
+        setActiveIndex((prev) => updateIndex(prev, -1));
 
     const handlers = useSwipeable({
-        onSwipedLeft: () => updateIndex(activeIndex + 1),
-        onSwipedRight: () => updateIndex(activeIndex - 1),
+        onSwipedLeft: incrementSlide,
+        onSwipedRight: decrementSlide,
     });
 
     return (
@@ -31,10 +26,7 @@ const Carousel = ({ items, renderItem }) => {
                     className="features__inner"
                     style={{ transform: `translate(-${activeIndex * 100}%)` }}
                 >
-                    {items.map((item) => {
-                        const width = "100px";
-                        return renderItem(item, width);
-                    })}
+                    {items.map((item) => renderItem(item, SLIDER_WIDTH))}
                 </div>
             </div>
 
@@ -44,7 +36,8 @@ const Carousel = ({ items, renderItem }) => {
                     src={slideLeft}
                     alt="go left"
                     onClick={() => {
-                        updateIndex(activeIndex - 1);
+                        updateIndex(activeIndex, -1);
+                        decrementSlide();
                     }}
                 />
                 <img
@@ -52,13 +45,14 @@ const Carousel = ({ items, renderItem }) => {
                     src={slideRight}
                     alt="go right"
                     onClick={() => {
-                        updateIndex(activeIndex + 1);
+                        updateIndex(activeIndex, 1);
+                        incrementSlide();
                     }}
                 />
             </div>
             <div className="features__slide--text">
                 <span className="features__slide--text-first">
-                    0{countPages}
+                    0{activeIndex + 1}
                 </span>
                 <span className="features__slide--text-second">/ 03</span>
             </div>

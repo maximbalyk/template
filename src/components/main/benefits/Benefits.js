@@ -11,10 +11,10 @@ class Benefits extends Component {
     }
 
     render() {
-        const benefitsForRender = this.state.benefits;
+        const { benefits } = this.state;
         return (
             <section className="benefits">
-                {benefitsForRender.map((benefit) => (
+                {benefits.map((benefit) => (
                     <Benefit
                         key={benefit.benefitName}
                         logoUrl={benefit.logoUrl}
