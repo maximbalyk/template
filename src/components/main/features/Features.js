@@ -4,13 +4,14 @@ import { FeatureItemView } from "./FeatureItemView";
 import { featuresData, featurelistUkr } from "../../../api/featuresData";
 import { withTranslation } from "react-i18next";
 import i18n from "i18next";
+import { URL_FOR_IMAGE } from "../../../assets/constants";
 
 class Features extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isTablet: false,
-            imageUrl: null,
+            imageUrl: URL_FOR_IMAGE,
             error: false,
         };
 
@@ -22,23 +23,6 @@ class Features extends Component {
         this.updatePredicate();
         window.addEventListener("resize", this.updatePredicate);
 
-        try {
-            const url =
-                "https://ksr-ugc.imgix.net/assets/005/452/746/41c15e233144105f258c254fc8f1f17b_original.jpg?ixlib=rb-4.0.2&w=680&fit=max&v=1456828798&gif-q=50&q=92&s=f911ca65e3310a403ccf4f79eed90ad7";
-            const response = await fetch(url);
-
-            if (!response.ok) {
-                throw new Error(`Error loading image: ${response.status}`);
-            }
-
-            const blob = await response.blob();
-            const imageUrl = URL.createObjectURL(blob);
-            this.setState({ loading: false, imageUrl });
-            console.log("Image loaded");
-        } catch (e) {
-            console.log("Error loading image", e);
-            this.setState({ loading: false, error: true });
-        }
     }
 
     componentWillUnmount() {
