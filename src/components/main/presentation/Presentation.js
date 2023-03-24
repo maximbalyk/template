@@ -1,23 +1,10 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import aboutUsVideo from "../../../images/about-usVideo.png";
 import intro from "../../../video/intro.mp4";
 import playIco from "../../../images/play.png";
-const Presentation = () => {
-    const [play, setPlay] = useState(false);
-    const [hover, setHover] = useState(false);
-    const videoRef = useRef();
-    const visibility = play
-        ? "video__button video__button--invisible"
-        : "video__button video__button--visible";
-    const handlePlay = () => {
-        if (!play) {
-            videoRef.current.play();
-            setPlay((play) => !play);
-        } else {
-            videoRef.current.pause();
-            setPlay((play) => !play);
-        }
-    };
+import WithPlayer from "./WithPlayer";
+const Presentation = (props) => {
+    const { handlePlay, visibility, hover, setHover, videoRef } = props;
 
     return (
         <section className="presentation" id="presentation">
@@ -31,7 +18,7 @@ const Presentation = () => {
             </video>
             <button
                 className={visibility}
-                onClick={()=> handlePlay()}
+                onClick={() => handlePlay()}
                 onMouseEnter={() => {
                     setHover((hover) => !hover);
                 }}
@@ -45,4 +32,4 @@ const Presentation = () => {
     );
 };
 
-export default Presentation;
+export default WithPlayer(Presentation);

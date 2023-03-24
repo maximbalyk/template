@@ -36,7 +36,6 @@ const Carousel = ({ items, renderItem }) => {
                     src={slideLeft}
                     alt="go left"
                     onClick={() => {
-                        updateIndex(activeIndex, -1);
                         decrementSlide();
                     }}
                 />
@@ -45,7 +44,6 @@ const Carousel = ({ items, renderItem }) => {
                     src={slideRight}
                     alt="go right"
                     onClick={() => {
-                        updateIndex(activeIndex, 1);
                         incrementSlide();
                     }}
                 />
