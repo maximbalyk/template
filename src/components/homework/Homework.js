@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StarWars from "./starwars/StarWars";
 import Modal from "../modal/Modal";
-import Biography from "./biography/Biography";
+import { Biography } from "./biography/Biography";
 import "./homework.scss";
 
 const Homework = () => {
@@ -12,6 +12,9 @@ const Homework = () => {
             <div className="button__wrapper">
                 <button className="btn" onClick={() => setModalActive(true)}>
                     Biography
+                </button>
+                <button className="btn" >
+                    Change theme
                 </button>
                 <a href="/template" className="btn">
                     To project

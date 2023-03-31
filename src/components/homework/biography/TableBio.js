@@ -47,7 +47,7 @@ const TableBio = ({
                                         }}
                                         key={`${year} ${bio}`}
                                         className={
-                                            currentElementID === bio
+                                            currentElementID === bio && currentID === item.id
                                                 ? "biography__bio__el--active"
                                                 : "biography__bio__el"
                                         }
