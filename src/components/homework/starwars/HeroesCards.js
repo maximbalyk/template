@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import HeroesCard from "./HeroesCard";
 import { Spinner } from "./Spinner";
 import "./spinner.scss";
 import Pagination from "./pagination/Pagination";
+import { ThemeContext } from "../../provider/ThemeProvider";
 
 const HeroesCards = () => {
     const [heroes, setHeroes] = useState(null);
@@ -37,8 +38,13 @@ const HeroesCards = () => {
             : null;
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const theme = useContext(ThemeContext);
+
     return (
-        <div className="card_wrapper">
+        <div className="card_wrapper"
+             style={{backgroundImage: theme.url}}
+
+        >
             <div className="card_paginate">
                 <Pagination
                     heroesPerPage={heroesPerPage}

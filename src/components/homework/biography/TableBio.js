@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../provider/ThemeProvider";
 
 const TableBio = ({
     sortedData,
@@ -10,10 +11,13 @@ const TableBio = ({
     dropHandler,
     chooseBio,
 }) => {
+    const theme = useContext(ThemeContext);
     return (
         <table>
-            <thead className="table-heading">
-                <tr>
+            <thead
+                className="table-heading"
+            >
+                <tr style={{ background: theme.background, color: theme.color}}>
                     <th>Name</th>
                     <th>Birth Year</th>
                     <th>Biography</th>
@@ -35,6 +39,10 @@ const TableBio = ({
                         onDragStart={(e) => dragStartHandler(e, item)}
                         onDragOver={(e) => dragOverHandler(e)}
                         onDrop={(e) => dropHandler(e, item)}
+                        style={{ background: theme.background,
+                            color: theme.color,
+                            borderColor: theme.backgroundElement
+                    }}
                     >
                         <td>{item.name}</td>
                         <td>{item.birthYear}</td>

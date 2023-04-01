@@ -5,7 +5,7 @@ import ButtonSection from "./ButtonSection";
 import TableBio from "./TableBio";
 
 export const Biography = () => {
-    const [data, setData] = useState([...dataApi]);
+    const [data] = useState([...dataApi]);
     const [sortedData, setSortedData] = useState([...dataApi]);
     const [increase, setIncrease] = useState(true);
     const [currentID, setCurrentID] = useState(null);
@@ -85,7 +85,7 @@ export const Biography = () => {
             if (person.id === currentID) {
                 const filteredBio = Object.fromEntries(
                     Object.entries(person.bio).filter(
-                        ([key, value]) => value !== currentElementID
+                        ([, value]) => value !== currentElementID
                     )
                 );
                 return { ...person, bio: filteredBio };
@@ -124,7 +124,6 @@ export const Biography = () => {
     };
 
     useEffect(() => {
-
         document.addEventListener("keydown", detectKeyDown, true);
         return () => {
             document.removeEventListener("keydown", detectKeyDown, true);

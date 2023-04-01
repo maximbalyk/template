@@ -1,13 +1,22 @@
-import React, { Component } from "react";
-import TestimonialsView from "./TestimonialsView";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import martin from "../../../images/martin.png";
 
-class Testimonials extends Component {
+export const Testimonials = () => {
+    const { t } = useTranslation();
 
-    render() {
-        return (
-            <TestimonialsView />
-        );
-    }
-}
-
-export default Testimonials;
+    return (
+        <section className="testimonials">
+            <div className="testimonials__quote">
+                <p className="testimonials__text">{t("testimonials")}</p>
+            </div>
+            <img
+                className="testimonials__avatar"
+                src={martin}
+                alt={t("name")}
+            />
+            <p className="testimonials__name">{t("name")}</p>
+            <p className="testimonials__position">{t("position")}</p>
+        </section>
+    );
+};

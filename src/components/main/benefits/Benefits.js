@@ -1,30 +1,20 @@
-import React, { Component } from "react";
-import Benefit from "./Benefit";
-import benefits from "../../../api/benefits.json";
+import React, { useState } from "react";
+import { Benefit } from "./Benefit";
+import benefitsJSON from "../../../api/benefits.json";
 
-class Benefits extends Component {
-    constructor() {
-        super();
-        this.state = {
-            benefits: benefits,
-        };
-    }
+export const Benefits = () => {
+    const [benefits] = useState(benefitsJSON);
 
-    render() {
-        const { benefits } = this.state;
-        return (
-            <section className="benefits">
-                {benefits.map((benefit) => (
-                    <Benefit
-                        key={benefit.benefitName}
-                        logoUrl={benefit.logoUrl}
-                        benefitName={benefit.benefitName}
-                        description={benefit.description}
-                    ></Benefit>
-                ))}
-            </section>
-        );
-    }
-}
-
-export default Benefits;
+    return (
+        <section className="benefits">
+            {benefits.map((benefit) => (
+                <Benefit
+                    key={benefit.benefitName}
+                    logoUrl={benefit.logoUrl}
+                    benefitName={benefit.benefitName}
+                    description={benefit.description}
+                ></Benefit>
+            ))}
+        </section>
+    );
+};

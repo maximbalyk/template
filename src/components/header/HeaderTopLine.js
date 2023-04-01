@@ -3,7 +3,7 @@ import logo from "../../images/logo.svg";
 import menu from "../../images/menu.svg";
 import i18n from "i18next";
 
-const HeaderTopLine = ({ openMenu }) => {
+export const HeaderTopLine = ({ openMenu }) => {
     const [isEnActive, setIsEnActive] = useState(true);
     return (
         <div className="header__top">
@@ -57,5 +57,3 @@ const HeaderTopLine = ({ openMenu }) => {
         </div>
     );
 };
-
-export default HeaderTopLine;
