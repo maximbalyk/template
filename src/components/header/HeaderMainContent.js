@@ -1,4 +1,4 @@
-import React,  from "react";
+import React  from "react";
 import wirelessSpeaker_original from "../../images/wirelessSpeaker_original.svg";
 import { useTranslation } from "react-i18next";
 
