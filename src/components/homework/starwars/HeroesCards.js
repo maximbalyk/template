@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeroesCard from "./HeroesCard";
 import { Spinner } from "./Spinner";
 import "./spinner.scss";
 import Pagination from "./pagination/Pagination";
-import { ThemeContext } from "../../provider/ThemeProvider";
+import { useTheme } from "../Homework";
+import { useStyles } from "../providerJSS/themeProvider";
 
 const HeroesCards = () => {
     const [heroes, setHeroes] = useState(null);
@@ -28,7 +29,7 @@ const HeroesCards = () => {
         if (heroes === null) {
             fetchData();
         }
-    }, []);
+    }, [heroes]);
 
     const lastHeroesIndex = currentPage * heroesPerPage;
     const firstHeroesIndex = lastHeroesIndex - heroesPerPage;
@@ -38,13 +39,10 @@ const HeroesCards = () => {
             : null;
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-    const theme = useContext(ThemeContext);
-
+    const theme = useTheme();
+    const classes = useStyles({ theme });
     return (
-        <div className="card_wrapper"
-             style={{backgroundImage: theme.url}}
-
-        >
+        <div className={classes.wrapper} >
             <div className="card_paginate">
                 <Pagination
                     heroesPerPage={heroesPerPage}

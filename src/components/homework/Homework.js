@@ -4,56 +4,47 @@ import Modal from "../modal/Modal";
 import { Biography } from "./biography/Biography";
 import "./homework.scss";
 import { ThemeContext, themes } from "../provider/ThemeProvider";
-
+import { ThemeProvider } from "react-jss";
+import { theming, useStyles } from "./providerJSS/themeProvider";
+export const { useTheme } = theming;
 const Homework = () => {
     const [modalActive, setModalActive] = useState(false);
     const [isDark, setIsDark] = useState(true);
+
     let themeVersion = isDark ? themes.dark : themes.light;
+    let classes = useStyles({ theme: themeVersion});
     return (
         <>
             <ThemeContext.Provider value={themeVersion}>
-                <div className="button__wrapper">
-                    <button
-                        className="btn"
-                        onClick={() => setModalActive(true)}
-                        style={{
-                            background: themeVersion.background,
-                            color: themeVersion.color,
-                        }}
-                    >
-                        Biography
-                    </button>
-                    <button
-                        className="btn"
-                        onClick={() => {
-                            setIsDark(!isDark);
-                        }}
-                        style={{
-                            background: themeVersion.background,
-                            color: themeVersion.color,
-                        }}
-                    >
-                        {isDark
-                            ? "Change theme to light"
-                            : "Change theme to dark"}
-                    </button>
+                <ThemeProvider theme={themeVersion}>
+                    <div className={classes.btnSection}>
+                        <button
+                            className={classes.btn}
+                            onClick={() => setModalActive(true)}
+                        >
+                            Biography
+                        </button>
+                        <button
+                            className={classes.btn}
+                            onClick={() => {
+                                setIsDark(!isDark);
+                            }}
+                        >
+                            {isDark
+                                ? "Change theme to light"
+                                : "Change theme to dark"}
+                        </button>
 
-                    <a
-                        href="/template"
-                        className="btn"
-                        style={{
-                            background: themeVersion.background,
-                            color: themeVersion.color,
-                        }}
-                    >
-                        To project
-                    </a>
-                </div>
+                        <a href="/template" className={classes.btn}>
+                            To project
+                        </a>
+                    </div>
 
-                <Modal active={modalActive} setActive={setModalActive}>
-                    <Biography />
-                </Modal>
-                <StarWars />
+                    <Modal active={modalActive} setActive={setModalActive}>
+                        <Biography />
+                    </Modal>
+                    <StarWars />
+                </ThemeProvider>
             </ThemeContext.Provider>
         </>
     );

@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../../provider/ThemeProvider";
-
+import React from "react";
+import { useTheme } from "../Homework";
+import { useStyles } from "../providerJSS/themeProvider";
 const Button = ({ onClick, text }) => {
-    const theme = useContext(ThemeContext);
-
+    const theme = useTheme();
+    const classes = useStyles({ theme });
     return (
-        <button className="biography__btn" onClick={onClick}
-                style={{ background: theme.backgroundElement,color:theme.color}}
-        >
+        <button className={classes.btn} onClick={onClick}>
             {text}
         </button>
     );

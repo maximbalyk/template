@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "./Button";
-import { ThemeContext } from "../../provider/ThemeProvider";
+import { useTheme } from "../Homework";
+import { useStyles } from "../providerJSS/themeProvider";
 const ButtonSection = ({ buttonDescription}) => {
-    const theme = useContext(ThemeContext);
+    const theme = useTheme()
+    const classes = useStyles({ theme})
     return (
-        <div className="biography__btn-section"
-             style={{ background: theme.background, color: theme.color}}
+        <div className={classes.btnSection}
         >
             {buttonDescription.map(button =>(
                 <Button key={button[1]} onClick={button[0]} text={button[1]}/>

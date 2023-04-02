@@ -145,6 +145,7 @@ export const Biography = () => {
             />
             <TableBio
                 sortedData={sortedData}
+                setSortedData={setSortedData}
                 currentID={currentID}
                 currentElementID={currentElementID}
                 choosePeople={choosePeople}

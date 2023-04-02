@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../../provider/ThemeProvider";
-
+import React from "react";
+import { useTheme } from "../Homework";
+import { useStyles } from "../providerJSS/themeProvider";
 const TableBio = ({
     sortedData,
     currentID,
@@ -11,38 +11,33 @@ const TableBio = ({
     dropHandler,
     chooseBio,
 }) => {
-    const theme = useContext(ThemeContext);
+    const theme = useTheme();
+    const classes = useStyles({ theme });
     return (
-        <table>
-            <thead
-                className="table-heading"
-            >
-                <tr style={{ background: theme.background, color: theme.color}}>
-                    <th>Name</th>
-                    <th>Birth Year</th>
-                    <th>Biography</th>
+        <table className={classes.table}>
+            <thead className="table-heading">
+                <tr>
+                    <th className={classes.thArticle}>Name</th>
+                    <th className={classes.thArticle}>Birth Year</th>
+                    <th className={classes.thArticle}>Biography</th>
                 </tr>
             </thead>
             <tbody>
                 {sortedData.map((item) => (
                     <tr
+                        className={
+                            currentID === item.id
+                                ? [classes.bio, classes.bioActive]
+                                : classes.bio
+                        }
                         onClick={() => {
                             choosePeople(item);
                         }}
                         key={item.id}
-                        className={
-                            currentID === item.id
-                                ? "biography__bio--active"
-                                : "biography__bio"
-                        }
                         draggable={true}
                         onDragStart={(e) => dragStartHandler(e, item)}
                         onDragOver={(e) => dragOverHandler(e)}
                         onDrop={(e) => dropHandler(e, item)}
-                        style={{ background: theme.background,
-                            color: theme.color,
-                            borderColor: theme.backgroundElement
-                    }}
                     >
                         <td>{item.name}</td>
                         <td>{item.birthYear}</td>
@@ -55,9 +50,10 @@ const TableBio = ({
                                         }}
                                         key={`${year} ${bio}`}
                                         className={
-                                            currentElementID === bio && currentID === item.id
-                                                ? "biography__bio__el--active"
-                                                : "biography__bio__el"
+                                            currentElementID === bio &&
+                                            currentID === item.id
+                                                ? classes.bioElActive
+                                                : classes.bioEl
                                         }
                                     >
                                         <strong>{year}:</strong> {bio}
