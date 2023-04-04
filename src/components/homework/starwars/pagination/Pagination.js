@@ -4,7 +4,6 @@ const Pagination = ({ heroesPerPage, totalPage, paginate }) => {
     for (let i = 1; i <= Math.ceil(totalPage / heroesPerPage); i++) {
         pageNumbers.push(i);
     }
-
     return (
         <div>
             {pageNumbers.map((number) => (

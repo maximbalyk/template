@@ -50,4 +50,4 @@ const Homework = () => {
     );
 };
 
-export default Homework;
+export default React.memo(Homework);

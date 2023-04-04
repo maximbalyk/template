@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import dataApi from "../../../api/api.json";
 import { bubbleSort, generateDeal, generateNewPeople } from "./helper";
-import ButtonSection from "./ButtonSection";
+import { ButtonSection } from "./ButtonSection";
 import TableBio from "./TableBio";
 
 export const Biography = () => {
@@ -27,11 +27,9 @@ export const Biography = () => {
     const dragStartHandler = (e, item) => {
         setCurrentItem(item);
     };
-
     const dragOverHandler = (e) => {
         e.preventDefault();
     };
-
     const dropHandler = (e, item) => {
         e.preventDefault();
         const dataForDrop = [...sortedData];
@@ -44,7 +42,7 @@ export const Biography = () => {
         }
     };
 
-    const handleSort = () => {
+    const handleSort = useCallback(() => {
         let sortedList = sortedData.sort((a, b) => {
             return increase
                 ? b.birthYear - a.birthYear
@@ -52,9 +50,13 @@ export const Biography = () => {
         });
         setSortedData(sortedList);
         setIncrease(!increase);
-    };
+    }, [increase, sortedData]);
 
-    const handlePureSort = () => {
+    const addNewBio = useCallback(() => {
+        setSortedData((prevState) => [...prevState, generateNewPeople()]);
+    },[]);
+
+    const handlePureSort = useCallback(() => {
         const compareByBirthYear = (person1, person2) => {
             return increase
                 ? person2.birthYear - person1.birthYear
@@ -62,25 +64,21 @@ export const Biography = () => {
         };
         setSortedData(bubbleSort(sortedData, compareByBirthYear));
         setIncrease(!increase);
-    };
+    }, [increase, sortedData]);
 
-    const handleReset = () => {
+    const handleReset = useCallback(() => {
         setSortedData(data);
         setCurrentID(null);
-    };
+    }, [data]);
 
-    const addNewBio = () => {
-        setSortedData((prevState) => [...prevState, generateNewPeople()]);
-    };
-
-    const deleteBio = () => {
+    const deleteBio = useCallback(() => {
         setSortedData((sortedData) =>
             sortedData.filter((person) => person.id !== currentID)
         );
         setCurrentID(null);
-    };
+    }, [sortedData, currentID]);
 
-    const deleteElementBio = () => {
+    const deleteElementBio = useCallback(() => {
         let result = sortedData.map((person) => {
             if (person.id === currentID) {
                 const filteredBio = Object.fromEntries(
@@ -94,8 +92,9 @@ export const Biography = () => {
         });
         setSortedData(result);
         setCurrentElementID(null);
-    };
-    const addElementBio = () => {
+    }, [sortedData, currentID, currentElementID]);
+
+    const addElementBio = useCallback(() => {
         const result = sortedData.map((person) => {
             if (person.id === currentID) {
                 return {
@@ -110,13 +109,11 @@ export const Biography = () => {
         });
         setSortedData(result);
         setCurrentElementID(null);
-    };
-
+    }, [sortedData, currentID]);
     const choosePeople = (item) => {
         setCurrentID(currentID !== item.id ? item.id : null);
         setCurrentElementID(null);
     };
-
     const chooseBio = (e, peopleItem, bioItem) => {
         e.stopPropagation();
         setCurrentID(peopleItem.id);
@@ -128,21 +125,31 @@ export const Biography = () => {
         return () => {
             document.removeEventListener("keydown", detectKeyDown, true);
         };
-    }, [currentID, sortedData]);
+    }, []);
+    const buttonDescription = useMemo(
+        () => [
+            [handleSort, "Sort"],
+            [handlePureSort, "Sort without sort method"],
+            [addNewBio, "Add new bio of person"],
+            [deleteBio, "Delete bio of person"],
+            [deleteElementBio, "Delete element from bio"],
+            [addElementBio, "Add element to bio"],
+            [handleReset, "Reset"],
+        ],
+        [
+            handleSort,
+            handlePureSort,
+            addNewBio,
+            deleteBio,
+            deleteElementBio,
+            addElementBio,
+            handleReset,
+        ]
+    );
 
     return (
-        <div>
-            <ButtonSection
-                buttonDescription={[
-                    [handleSort, "Sort"],
-                    [handlePureSort, "Sort without sort method"],
-                    [addNewBio, "Add new bio of person"],
-                    [deleteBio, "Delete bio of person"],
-                    [deleteElementBio, "Delete element from bio"],
-                    [addElementBio, "Add element to bio"],
-                    [handleReset, "Reset"],
-                ]}
-            />
+        <>
+            <ButtonSection buttonDescription={buttonDescription} />
             <TableBio
                 sortedData={sortedData}
                 setSortedData={setSortedData}
@@ -154,6 +161,6 @@ export const Biography = () => {
                 dragOverHandler={dragOverHandler}
                 dropHandler={dropHandler}
             />
-        </div>
+        </>
     );
 };

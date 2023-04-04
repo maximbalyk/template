@@ -68,4 +68,4 @@ const TableBio = ({
     );
 };
 
-export default TableBio;
+export default React.memo(TableBio);

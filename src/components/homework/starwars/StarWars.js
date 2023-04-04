@@ -1,11 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import "./StarWarsStyle.scss";
-import HeroesCards from "./HeroesCards";
+import { HeroesCards } from "./HeroesCards";
 
-class StarWars extends Component {
-    render() {
-        return <HeroesCards />;
-    }
+const StarWars = () => {
+    return <HeroesCards />;
 }
-
 export default StarWars;

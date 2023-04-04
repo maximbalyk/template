@@ -6,7 +6,7 @@ import Pagination from "./pagination/Pagination";
 import { useTheme } from "../Homework";
 import { useStyles } from "../providerJSS/themeProvider";
 
-const HeroesCards = () => {
+export const HeroesCards = React.memo(() => {
     const [heroes, setHeroes] = useState(null);
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -29,7 +29,7 @@ const HeroesCards = () => {
         if (heroes === null) {
             fetchData();
         }
-    }, [heroes]);
+    }, []);
 
     const lastHeroesIndex = currentPage * heroesPerPage;
     const firstHeroesIndex = lastHeroesIndex - heroesPerPage;
@@ -70,6 +70,4 @@ const HeroesCards = () => {
             </div>
         </div>
     );
-};
-
-export default HeroesCards;
+});
