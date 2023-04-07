@@ -3,6 +3,7 @@ import dataApi from "../../../api/api.json";
 import { bubbleSort, generateDeal, generateNewPeople } from "./helper";
 import { ButtonSection } from "./ButtonSection";
 import TableBio from "./TableBio";
+import { ARROW_DOWN, ARROW_UP } from "../../../assets/constants";
 
 export const Biography = () => {
     const [data] = useState([...dataApi]);
@@ -15,10 +16,10 @@ export const Biography = () => {
         const index = sortedData.findIndex((item) => item.id === currentID);
         const nextElement = sortedData[index + 1];
         const prevElement = sortedData[index - 1];
-        if (e.key === "ArrowDown" && nextElement) {
+        if (e.key === ARROW_DOWN && nextElement) {
             setCurrentID(nextElement.id);
             setCurrentElementID(null);
-        } else if (e.key === "ArrowUp" && prevElement) {
+        } else if (e.key === ARROW_UP && prevElement) {
             setCurrentID(prevElement.id);
             setCurrentElementID(null);
         }
@@ -97,11 +98,12 @@ export const Biography = () => {
     const addElementBio = useCallback(() => {
         const result = sortedData.map((person) => {
             if (person.id === currentID) {
+                const {key, value} = generateDeal()
                 return {
                     ...person,
                     bio: {
                         ...person.bio,
-                        [generateDeal()[1]]: generateDeal()[0],
+                        [key]: value,
                     },
                 };
             }

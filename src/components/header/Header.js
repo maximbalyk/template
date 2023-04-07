@@ -5,17 +5,21 @@ import { HeaderTopLine } from "./HeaderTopLine";
 
 export const Header = () => {
     const [activeMenu, setActiveMenu] = useState(false);
-    const [pixel, setPixel] = useState("100%");
     const toggleMenu = () => {
         setActiveMenu(!activeMenu);
-        setPixel(activeMenu ? "100%" : "0%");
     };
 
     return (
         <header className="header">
-            <HeaderTopLine pixel={pixel} openMenu={toggleMenu} />
+            <HeaderTopLine
+                pixel={activeMenu ? "0%" : "100%"}
+                openMenu={toggleMenu}
+            />
             <HeaderMainContent />
-            <HeaderNavigationMenu pixel={pixel} closedMenu={toggleMenu} />
+            <HeaderNavigationMenu
+                pixel={activeMenu ? "0%" : "100%"}
+                closedMenu={toggleMenu}
+            />
         </header>
     );
 };

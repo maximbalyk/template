@@ -3,8 +3,10 @@ import HeroesCard from "./HeroesCard";
 import { Spinner } from "./Spinner";
 import "./spinner.scss";
 import Pagination from "./pagination/Pagination";
-import { useTheme } from "../Homework";
+import { useTheme } from "react-jss";
 import { useStyles } from "../providerJSS/themeProvider";
+
+
 
 export const HeroesCards = React.memo(() => {
     const [heroes, setHeroes] = useState(null);

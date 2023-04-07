@@ -1,6 +1,6 @@
 import React from "react";
-import { useTheme } from "../Homework";
-import { useStyles } from "../providerJSS/themeProvider";
+import { useTheme } from "react-jss";
+import { useStylesTable } from "./TableBioProvider";
 const TableBio = ({
     sortedData,
     currentID,
@@ -12,7 +12,7 @@ const TableBio = ({
     chooseBio,
 }) => {
     const theme = useTheme();
-    const classes = useStyles({ theme });
+    const classes = useStylesTable({ theme });
     return (
         <table className={classes.table}>
             <thead className="table-heading">
@@ -67,5 +67,4 @@ const TableBio = ({
         </table>
     );
 };
-
 export default React.memo(TableBio);

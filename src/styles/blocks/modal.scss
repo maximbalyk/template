@@ -13,11 +13,10 @@
   transition: 0.5s;
 }
 
-.modal.active {
+.active {
   z-index: 2;
   opacity: 1;
   pointer-events: all;
-
 }
 
 .modal__content {

@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "./Button";
-import { useTheme } from "../Homework";
+import { useTheme } from "react-jss";
 import { useStyles } from "../providerJSS/themeProvider";
+
 export const ButtonSection = React.memo(({ buttonDescription }) => {
     const theme = useTheme();
     const classes = useStyles({ theme });

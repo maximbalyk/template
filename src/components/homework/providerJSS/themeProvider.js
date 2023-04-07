@@ -1,15 +1,28 @@
 import { createTheming, createUseStyles } from "react-jss";
-import { ThemeContext } from "../../provider/ThemeProvider";
+import React from "react";
+export const themes = {
+    light: {
+        background: "#eeeeee",
+        backgroundElement: "#ccc",
+        backgroundElementActive: "#adadb0",
+        backgroundButtonHover: "rgb(103 159 230)",
+        color: "#19191d",
+        url: "url(https://picstatio.com/u/7faeaf/death-star-astronaut-art.jpg)",
+    },
+    dark: {
+        background: "#19191d",
+        backgroundElement: "#25252b",
+        backgroundElementActive: "#4a4a4c",
+        backgroundButtonHover: "rgb(246 10 55 / 41%)",
+        color: "#eeeeee",
+        url: "url(https://picstatio.com/u/5eeb9f/kylo-ren-star-wars-artwork-4k.jpg)",
+    },
+};
+
+export const ThemeContext = React.createContext(themes.dark);
 export const theming = createTheming(ThemeContext);
 export const useStyles = createUseStyles(
     {
-        table: {
-            minWidth: "100%",
-            borderCollapse: "collapse",
-        },
-        thArticle: {
-            color: ({ theme }) => theme.color,
-        },
         wrapper: {
             display: "flex",
             height: "100vh",
@@ -26,49 +39,6 @@ export const useStyles = createUseStyles(
                 flexDirection: "column",
                 height: "100%",
             },
-        },
-        bio: {
-            backgroundColor: ({ theme }) => theme.backgroundElement,
-            color: ({ theme }) => theme.color,
-            borderBottomColor: ({ theme }) => theme.color,
-            transition: "0.3s",
-            margin: "auto",
-            borderBottom: "2px solid",
-            "& td": {
-                display: "table-cell",
-                textAlign: "center",
-                "&:last-child": {
-                    textAlign: "start",
-                    width: "50%",
-                },
-                "& ul": {
-                    listStyle: "none",
-                    margin: 0,
-                    padding: 0,
-                    "& li": {
-                        marginBottom: "5px",
-                        "&:last-child": {
-                            marginBottom: 0,
-                        },
-                        "& strong": {
-                            marginRight: "5px",
-                        },
-                    },
-                },
-            },
-        },
-        bioActive: {
-            backgroundColor: ({ theme }) => theme.backgroundElementActive,
-            color: ({ theme }) => theme.color,
-            borderBottomColor: ({ theme }) => theme.color,
-        },
-        bioEl: {
-            background: "none",
-            transition: "0.3s",
-        },
-        bioElActive: {
-            backgroundColor: "#5a595e",
-            transition: "0.3s",
         },
         btnSection: {
             display: "flex",
@@ -91,11 +61,11 @@ export const useStyles = createUseStyles(
             textDecoration: "none",
             transition: "all 1s ease",
             fontSize: "16px",
-            "&:hover": {
+            "& :hover": {
                 backgroundColor: ({ theme }) => theme.backgroundButtonHover,
                 cursor: "pointer",
             },
-            "&:active": {
+            "& :active": {
                 transform: "translateY(2px)",
             },
         },

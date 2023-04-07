@@ -1,23 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import "../../styles/blocks/modal.scss";
-import { ThemeContext } from "../provider/ThemeProvider";
+import { useTheme } from "react-jss";
+import { useStylesModal } from "./ModalProvider";
 
 const Modal = ({ active, setActive, children }) => {
-    const theme = useContext(ThemeContext);
+    const theme = useTheme();
+    const classes = useStylesModal({ theme });
     return (
         <div
-            className={active ? "modal active" : "modal"}
+            className={active ?  classes.active  : classes.modal}
             onClick={() => setActive(false)}
         >
             <div
-                className={active ? "modal__content active" : "modal__content"}
+                className={active ? classes.modalContentActive : classes.modalContent}
                 onClick={(e) => e.stopPropagation()}
-                style={{ background: theme.background}}
             >
                 {children}
             </div>
         </div>
     );
 };
-
 export default Modal;
