@@ -4,13 +4,10 @@ import menu from "../../images/menu.svg";
 import i18n from "i18next";
 
 export const HeaderTopLine = ({ openMenu }) => {
-    const [isEnActive, setIsEnActive] = useState(true);
-
-    useEffect(() => {
+    const [isEnActive, setIsEnActive] = useState(
         localStorage.getItem("lng") === "en"
-            ? setIsEnActive(true)
-            : setIsEnActive(false);
-    }, []);
+    );
+
     const handleChangeLng = () => {
         i18n.language === "en"
             ? i18n.changeLanguage("ua")
