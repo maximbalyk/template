@@ -30,7 +30,7 @@ export const HeroesCards = React.memo(() => {
 
         fetchData();
     }, []);
-    console.log(heroes);
+
     const lastHeroesIndex = currentPage * heroesPerPage;
     const firstHeroesIndex = lastHeroesIndex - heroesPerPage;
     const currentHeroes =
