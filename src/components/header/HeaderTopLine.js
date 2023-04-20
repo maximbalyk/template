@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../images/logo.svg";
 import menu from "../../images/menu.svg";
 import i18n from "i18next";
 
 export const HeaderTopLine = ({ openMenu }) => {
     const [isEnActive, setIsEnActive] = useState(true);
+
+    useEffect(() => {
+        localStorage.getItem("lng") === "en"
+            ? setIsEnActive(true)
+            : setIsEnActive(false);
+    }, []);
+    const handleChangeLng = () => {
+        i18n.language === "en"
+            ? i18n.changeLanguage("ua")
+            : i18n.changeLanguage("en");
+
+        localStorage.setItem("lng", i18n.language);
+    };
     return (
         <div className="header__top">
             <div className="header__logo">
@@ -27,9 +40,7 @@ export const HeaderTopLine = ({ openMenu }) => {
                     }
                     onClick={() => {
                         setIsEnActive(!isEnActive);
-                        i18n.language === "en"
-                            ? i18n.changeLanguage("ua")
-                            : i18n.changeLanguage("en");
+                        handleChangeLng();
                     }}
                 >
                     EN
@@ -43,9 +54,7 @@ export const HeaderTopLine = ({ openMenu }) => {
                     }
                     onClick={() => {
                         setIsEnActive(!isEnActive);
-                        i18n.language === "en"
-                            ? i18n.changeLanguage("ua")
-                            : i18n.changeLanguage("en");
+                        handleChangeLng();
                     }}
                 >
                     UA
