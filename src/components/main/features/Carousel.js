@@ -35,17 +35,13 @@ const Carousel = ({ items, renderItem }) => {
                     className="features__slideArrow"
                     src={slideLeft}
                     alt="go left"
-                    onClick={() => {
-                        decrementSlide();
-                    }}
+                    onClick={decrementSlide}
                 />
                 <img
                     className="features__slideArrow"
                     src={slideRight}
                     alt="go right"
-                    onClick={() => {
-                        incrementSlide();
-                    }}
+                    onClick={incrementSlide}
                 />
             </div>
             <div className="features__slide--text">

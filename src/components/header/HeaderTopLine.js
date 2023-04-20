@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "../../images/logo.svg";
 import menu from "../../images/menu.svg";
 import i18n from "i18next";
@@ -9,6 +9,7 @@ export const HeaderTopLine = ({ openMenu }) => {
     );
 
     const handleChangeLng = () => {
+        setIsEnActive(!isEnActive)
         i18n.language === "en"
             ? i18n.changeLanguage("ua")
             : i18n.changeLanguage("en");
@@ -35,10 +36,7 @@ export const HeaderTopLine = ({ openMenu }) => {
                             ? "header__button header__button--active"
                             : "header__button"
                     }
-                    onClick={() => {
-                        setIsEnActive(!isEnActive);
-                        handleChangeLng();
-                    }}
+                    onClick={handleChangeLng}
                 >
                     EN
                 </a>
@@ -49,10 +47,7 @@ export const HeaderTopLine = ({ openMenu }) => {
                             ? "header__button"
                             : "header__button header__button--active"
                     }
-                    onClick={() => {
-                        setIsEnActive(!isEnActive);
-                        handleChangeLng();
-                    }}
+                    onClick={handleChangeLng}
                 >
                     UA
                 </a>

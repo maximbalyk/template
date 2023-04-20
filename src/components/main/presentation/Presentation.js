@@ -18,7 +18,7 @@ const Presentation = (props) => {
             </video>
             <button
                 className={visibility}
-                onClick={() => handlePlay()}
+                onClick={handlePlay}
                 onMouseEnter={() => {
                     setHover((hover) => !hover);
                 }}

@@ -6,7 +6,7 @@ import { HeaderTopLine } from "./HeaderTopLine";
 export const Header = () => {
     const [activeMenu, setActiveMenu] = useState(false);
     const toggleMenu = () => {
-        setActiveMenu(!activeMenu);
+        setActiveMenu(prevActiveMenu => !prevActiveMenu);
     };
 
     return (

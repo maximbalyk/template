@@ -55,7 +55,7 @@ export const Biography = () => {
 
     const addNewBio = useCallback(() => {
         setSortedData((prevState) => [...prevState, generateNewPeople()]);
-    },[]);
+    }, []);
 
     const handlePureSort = useCallback(() => {
         const compareByBirthYear = (person1, person2) => {
@@ -77,7 +77,7 @@ export const Biography = () => {
             sortedData.filter((person) => person.id !== currentID)
         );
         setCurrentID(null);
-    }, [sortedData, currentID]);
+    }, [currentID]);
 
     const deleteElementBio = useCallback(() => {
         let result = sortedData.map((person) => {
@@ -98,7 +98,7 @@ export const Biography = () => {
     const addElementBio = useCallback(() => {
         const result = sortedData.map((person) => {
             if (person.id === currentID) {
-                const {key, value} = generateDeal()
+                const { key, value } = generateDeal();
                 return {
                     ...person,
                     bio: {
@@ -127,7 +127,7 @@ export const Biography = () => {
         return () => {
             document.removeEventListener("keydown", detectKeyDown, true);
         };
-    }, []);
+    }, [detectKeyDown]);
     const buttonDescription = useMemo(
         () => [
             [handleSort, "Sort"],
