@@ -9,13 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { saveData } from "../../../store/heroesSlice";
 export const HeroesCards = React.memo(() => {
     const [error, setError] = useState(null);
+    const [isLoad, setIsLoad] = useState(false)
     const [currentPage, setCurrentPage] = useState(1);
     const [heroesPerPage] = useState(3);
     const heroes = useSelector((state) => state.counter.heroes);
     const dispatch = useDispatch();
-    let isLoad = false;
+
     const fetchData = async () => {
-        isLoad = true;
+        setIsLoad(() => !isLoad) ;
         try {
             const response = await fetch("https://swapi.dev/api/people/");
             if (!response.ok) {
@@ -23,10 +24,10 @@ export const HeroesCards = React.memo(() => {
             }
             const result = await response.json();
             dispatch(saveData(result.results));
-            isLoad = false;
+            setIsLoad(() => false) ;
         } catch (error) {
             setError(error);
-            isLoad = false;
+            setIsLoad(() => false) ;
         }
     };
 
