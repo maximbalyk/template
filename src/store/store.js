@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from "./heroesSlice";
+import { heroesApi } from "./heroesApi";
 export const store = configureStore({
     reducer: {
-        counter: counterReducer,
+        [heroesApi.reducerPath]: heroesApi.reducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false,
+    }).concat(heroesApi.middleware),
 })

@@ -3,7 +3,7 @@ import dataApi from "../../../api/api.json";
 import { bubbleSort, generateDeal, generateNewPeople } from "./helper";
 import { ButtonSection } from "./ButtonSection";
 import TableBio from "./TableBio";
-import { ARROW_DOWN, ARROW_UP } from "../../../assets/constants";
+import { ARROW_DOWN, ARROW_UP } from "../../../constants/constants";
 
 export const Biography = () => {
     const [data] = useState([...dataApi]);

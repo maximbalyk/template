@@ -3,7 +3,7 @@ import Carousel from "./Carousel";
 import { FeatureItemView } from "./FeatureItemView";
 import { featuresData, featurelistUkr } from "../../../api/featuresData";
 import i18n from "i18next";
-import { URL_FOR_IMAGE } from "../../../assets/constants";
+import { URL_FOR_IMAGE } from "../../../constants/constants";
 import { useTranslation } from "react-i18next";
 export const Features = () => {
     const [isTablet, setIsTablet] = useState(false);

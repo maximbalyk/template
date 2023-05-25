@@ -5,16 +5,15 @@ import i18n from "i18next";
 
 export const HeaderTopLine = ({ openMenu }) => {
     const [isEnActive, setIsEnActive] = useState(
-        localStorage.getItem("lng") === "en"
+        i18n.language === "en"
     );
+
 
     const handleChangeLng = () => {
         setIsEnActive(!isEnActive)
         i18n.language === "en"
             ? i18n.changeLanguage("ua")
             : i18n.changeLanguage("en");
-
-        localStorage.setItem("lng", i18n.language);
     };
     return (
         <div className="header__top">

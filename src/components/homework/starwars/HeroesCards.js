@@ -1,55 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HeroesCard from "./HeroesCard";
 import { Spinner } from "./Spinner";
 import "./spinner.scss";
 import Pagination from "./pagination/Pagination";
 import { useTheme } from "react-jss";
 import { useStyles } from "../providerJSS/themeProvider";
-import { useDispatch, useSelector } from "react-redux";
-import { saveData } from "../../../store/heroesSlice";
+import { useGetAllHeroesQuery } from "../../../store/heroesApi";
 export const HeroesCards = React.memo(() => {
-    const [error, setError] = useState(null);
-    const [isLoad, setIsLoad] = useState(false)
     const [currentPage, setCurrentPage] = useState(1);
+    const [refreshing, setRefreshing] = useState(false);
     const [heroesPerPage] = useState(3);
-    const heroes = useSelector((state) => state.counter.heroes);
-    const dispatch = useDispatch();
-
-    const fetchData = async () => {
-        setIsLoad(() => !isLoad) ;
-        try {
-            const response = await fetch("https://swapi.dev/api/people/");
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const result = await response.json();
-            dispatch(saveData(result.results));
-            setIsLoad(() => false) ;
-        } catch (error) {
-            setError(error);
-            setIsLoad(() => false) ;
-        }
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
+    const { data, isLoading, isError, error, refetch} = useGetAllHeroesQuery();
     const lastHeroesIndex = currentPage * heroesPerPage;
     const firstHeroesIndex = lastHeroesIndex - heroesPerPage;
-    const currentHeroes =
-        heroes !== null
-            ? heroes.slice(firstHeroesIndex, lastHeroesIndex)
-            : null;
-
+    let heroes = [];
+    let currentHeroes = [];
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     const theme = useTheme();
     const classes = useStyles({ theme });
+    const handleRefresh = () => {
+        setRefreshing(true);
+        refetch()
+            .then(() => {
+                setRefreshing(false);
+            })
+            .catch((error) => {
+                console.error("Error refreshing data:", error);
+                setRefreshing(false);
+            });
+    };
+
+    if (!isLoading) {
+        heroes = data.results;
+        currentHeroes = heroes?.slice(firstHeroesIndex, lastHeroesIndex) || null;
+    }
     return (
         <div className={classes.wrapper}>
             <div className="card_paginate">
-                <button className="card_button_rf" onClick={() => fetchData()}>
-                    {isLoad ? "...Loading" : "Refresh"}
+                <button className="card_button_rf" onClick={handleRefresh} >
+                    {refreshing  ? "...Loading" : "Refresh"}
                 </button>
                 <Pagination
                     heroesPerPage={heroesPerPage}
@@ -58,8 +47,8 @@ export const HeroesCards = React.memo(() => {
                 />
             </div>
             <div className="card_container">
-                {error && <p>{error}</p>}
-                {heroes.length ? (
+                {isError && <p>{error}</p>}
+                {!isLoading ? (
                     currentHeroes.map((hero) => (
                         <HeroesCard
                             key={hero.created}

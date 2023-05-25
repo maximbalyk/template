@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import slideLeft from "../../../images/slide-left.svg";
 import slideRight from "../../../images/slide-right.svg";
 import { useSwipeable } from "react-swipeable";
-import { SLIDER_WIDTH } from "../../../assets/constants";
+import { SLIDER_WIDTH } from "../../../constants/constants";
 
 const Carousel = ({ items, renderItem }) => {
     const [activeIndex, setActiveIndex] = useState(0);

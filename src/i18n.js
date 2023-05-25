@@ -1,11 +1,11 @@
-import React from "react";
 import i18n from "i18next";
 import detector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 import ukrainian from './locales/ua/translation.json'
 import english from './locales/en/translation.json'
+const languageDetector = new detector();
 i18n
-    .use(detector)
+    .use(languageDetector)
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
         // the translations
@@ -19,12 +19,15 @@ i18n
                 translation: ukrainian
             }
         },
-        lng: localStorage.getItem('lng') || "en", // if you're using a language detector, do not define the lng option
         fallbackLng: "en",
 
         interpolation: {
             escapeValue: false // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
-        }
+        },
+        detection: {
+            order: ['cookie', 'localStorage'],
+            caches: ['cookie'],
+        },
     });
 
 export default i18n
