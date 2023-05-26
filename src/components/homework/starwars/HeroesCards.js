@@ -6,15 +6,17 @@ import Pagination from "./pagination/Pagination";
 import { useTheme } from "react-jss";
 import { useStyles } from "../providerJSS/themeProvider";
 import { useGetAllHeroesQuery } from "../../../store/heroesApi";
+
 export const HeroesCards = React.memo(() => {
     const [currentPage, setCurrentPage] = useState(1);
     const [refreshing, setRefreshing] = useState(false);
     const [heroesPerPage] = useState(3);
     const { data, isLoading, isError, error, refetch} = useGetAllHeroesQuery();
+
     const lastHeroesIndex = currentPage * heroesPerPage;
     const firstHeroesIndex = lastHeroesIndex - heroesPerPage;
-    let heroes = [];
-    let currentHeroes = [];
+    let heroes = data?.results;
+    let currentHeroes = heroes?.slice(firstHeroesIndex, lastHeroesIndex) || null;
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     const theme = useTheme();
     const classes = useStyles({ theme });
@@ -30,10 +32,6 @@ export const HeroesCards = React.memo(() => {
             });
     };
 
-    if (!isLoading) {
-        heroes = data.results;
-        currentHeroes = heroes?.slice(firstHeroesIndex, lastHeroesIndex) || null;
-    }
     return (
         <div className={classes.wrapper}>
             <div className="card_paginate">
