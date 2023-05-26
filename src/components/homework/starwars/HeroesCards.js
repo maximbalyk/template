@@ -11,13 +11,13 @@ export const HeroesCards = React.memo(() => {
     const [currentPage, setCurrentPage] = useState(1);
     const [refreshing, setRefreshing] = useState(false);
     const [heroesPerPage] = useState(3);
-    const { data, isLoading, isError, error, refetch} = useGetAllHeroesQuery();
+    const { data, isLoading, isError, error, refetch } = useGetAllHeroesQuery();
 
     const lastHeroesIndex = currentPage * heroesPerPage;
     const firstHeroesIndex = lastHeroesIndex - heroesPerPage;
-    let heroes = data?.results;
-    let currentHeroes = heroes?.slice(firstHeroesIndex, lastHeroesIndex) || null;
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const displayedHeroes =
+        data?.results?.slice(firstHeroesIndex, lastHeroesIndex) || [];
+
     const theme = useTheme();
     const classes = useStyles({ theme });
     const handleRefresh = () => {
@@ -35,19 +35,19 @@ export const HeroesCards = React.memo(() => {
     return (
         <div className={classes.wrapper}>
             <div className="card_paginate">
-                <button className="card_button_rf" onClick={handleRefresh} >
-                    {refreshing  ? "...Loading" : "Refresh"}
+                <button className="card_button_rf" onClick={handleRefresh}>
+                    {refreshing ? "...Loading" : "Refresh"}
                 </button>
                 <Pagination
                     heroesPerPage={heroesPerPage}
-                    totalPage={heroes?.length}
-                    paginate={paginate}
+                    totalPage={data?.results?.length || 0}
+                    paginate={setCurrentPage}
                 />
             </div>
             <div className="card_container">
-                {isError && <p>{error}</p>}
+                {isError && <p>{error.message()}</p>}
                 {!isLoading ? (
-                    currentHeroes.map((hero) => (
+                    displayedHeroes.map((hero) => (
                         <HeroesCard
                             key={hero.created}
                             created={hero.created}
